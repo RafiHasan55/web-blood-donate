@@ -3,7 +3,7 @@ import { CgMenuMotion } from "react-icons/cg";
 import { RiMenuAddLine } from "react-icons/ri";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../providers/AuthProvider";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -127,6 +127,7 @@ const Header = () => {
           }
         </div>
       </div>
+      {/* <ToastContainer /> */}
     </nav>
   );
 };

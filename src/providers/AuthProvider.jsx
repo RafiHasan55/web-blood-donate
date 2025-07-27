@@ -54,7 +54,7 @@ const AuthProvider = ({ children }) => {
       axiosPublic
         .post("/add-user", {
           email: currentUser.email,
-          role: "user",
+          role: "donor",
           loginCount: 1,
         })
         .then((res) => {

@@ -7,104 +7,65 @@ import Social from "../components/Social";
 import Title from "../components/Title";
 import { AuthContext } from "../providers/AuthProvider";
 import { toast, ToastContainer } from "react-toastify";
-import { createUserWithEmailAndPassword, GoogleAuthProvider, updateProfile } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  updateProfile,
+} from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
 const provider = new GoogleAuthProvider();
 
 const Register = () => {
-  
-  // const goTo = useNavigate();
-  // const { createUser, signIn, user, setUser, updateUser } =
-  //   useContext(AuthContext);
-
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const form = e.target;
-  //   const name = form.name.value;
-  //   const image = form.image.value;
-  //   const email = form.email.value;
-  //   const pass = form.pass.value;
-
-  //   console.log(name, email, pass);
-
-  //   createUser(email, pass)
-  //     .then((res) => {
-  //       updateUser({ displayName: name }).then(() => {
-  //         setUser({ ...res.user, displayName: name, photoURL: image });
-  //         goTo(`${location.state ? location.state : "/"}`);
-  //         console.log(res.data);
-  //         toast.success("Register Successfully")
-  //       });
-  //     })
-  //     .catch((error) => {
-  //      toast.error("Logout failed: " + error.message);
-  //     });
-  // };
-
-
-
-
-
   const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
 
   const handleSignUp = (e) => {
-  e.preventDefault();
-  const form = e.target;
-  const fullname = form.fullname.value.trim();
-  const email = form.email.value.trim();
-  const photo = form.photo.value.trim();
-  const password = form.password.value;
+    e.preventDefault();
+    const form = e.target;
+    const fullname = form.fullname.value.trim();
+    const email = form.email.value.trim();
+    const photo = form.photo.value.trim();
+    const password = form.password.value;
 
-  if (!fullname || !email || !photo || !password) {
-    toast.error("Please fill out all fields!");
-    return;
-  }
+    if (!fullname || !email || !photo || !password) {
+      toast.error("Please fill out all fields!");
+      return;
+    }
 
-  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-  if (!passwordRegex.test(password)) {
-    toast.error("Password must be at least 8 characters and include uppercase, lowercase, and a number.");
-    return;
-  }
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    if (!passwordRegex.test(password)) {
+      toast.error(
+        "Password must be at least 8 characters and include uppercase, lowercase, and a number."
+      );
+      return;
+    }
 
-  setErrorMessage("");
+    setErrorMessage("");
 
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((result) => {
-      const profile = {
-        displayName: fullname,
-        photoURL: photo,
-      };
-      updateProfile(result.user, profile)
-        .then(() => {
-          toast.success("Account created successfully!");
-          form.reset();
-          navigate("/login");
-        })
-        .catch((error) => {
-          console.error("Profile update error:", error);
-          toast.error("Profile update failed");
-        });
-    })
-    .catch((error) => {
-      console.error("Signup error:", error);
-      setErrorMessage(error.message);
-      toast.error(error.message);
-    });
-};
-
-
-
-
-
-
-
-
-
-
-
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((result) => {
+        const profile = {
+          displayName: fullname,
+          photoURL: photo,
+        };
+        updateProfile(result.user, profile)
+          .then(() => {
+            toast.success("Account created successfully!");
+            form.reset();
+            navigate("/login");
+          })
+          .catch((error) => {
+            console.error("Profile update error:", error);
+            toast.error("Profile update failed");
+          });
+      })
+      .catch((error) => {
+        console.error("Signup error:", error);
+        setErrorMessage(error.message);
+        toast.error(error.message);
+      });
+  };
 
   return (
     <div className=" bg-[url(/bg.png)] bg-contain">
@@ -167,16 +128,15 @@ const Register = () => {
                   />
                 </div>
 
-                
-
                 <input
                   type="submit"
                   value="Register Now"
                   className="btn cursor-pointer"
                 />
               </form>
-              {errorMessage && <p className="text-red-500 text-center mt-2">{errorMessage}</p>}
-
+              {errorMessage && (
+                <p className="text-red-500 text-center mt-2">{errorMessage}</p>
+              )}
             </div>
             <Social></Social>
             <div className="lottie flex-1 flex mx-20 ">
@@ -185,7 +145,7 @@ const Register = () => {
           </div>
         </div>
       </div>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </div>
   );
 };
