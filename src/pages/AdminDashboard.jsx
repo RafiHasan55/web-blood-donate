@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { AuthContext } from "../providers/AuthProvider";
 
 const AdminDashboard = () => {
+  const { user } = useContext(AuthContext);
+
   const [stats, setStats] = useState({
     totalUsers: 0,
     totalBooks: 0,
@@ -11,10 +14,12 @@ const AdminDashboard = () => {
   const axiosSecure = useAxiosSecure();
 
   const [latestRequests, setLatestRequests] = useState([]);
+  
 
   useEffect(() => {
     // Replace with your secure APIs
     axiosSecure("/admin-dashboard-stats").then(({data}) => setStats(data));
+    
 
     // fetch("/api/latest-requests?limit=5")
     //   .then((res) => res.json())
@@ -23,7 +28,9 @@ const AdminDashboard = () => {
 
   return (
     <div className="p-6 space-y-6">
-      <h2 className="text-3xl font-bold text-blue-600">👋 Welcome, Admin</h2>
+      <h2 className="text-3xl font-bold text-blue-600">
+  👋 Welcome, {user?.displayName || "Admin"}
+</h2>
 
       {/* Stats Card */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

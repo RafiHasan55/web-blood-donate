@@ -15,6 +15,7 @@ import {
 import { auth } from "../firebase/firebase.config";
 import DistrictSelect from "./DistrictSelect";
 import UpazilaSelect from "./UpazilaSelect";
+import axios from "axios";
 
 const provider = new GoogleAuthProvider();
 
@@ -50,28 +51,39 @@ const Register = () => {
     setErrorMessage("");
 
     createUserWithEmailAndPassword(auth, email, password)
-      .then((result) => {
-        const profile = {
-          displayName: fullname,
-          photoURL: photo,
-        };
-        updateProfile(result.user, profile)
-          .then(() => {
-            toast.success("Account created successfully!");
-            form.reset();
-            navigate("/login");
-          })
-          .catch((error) => {
-            console.error("Profile update error:", error);
-            toast.error("Profile update failed");
-          });
-      })
-      .catch((error) => {
-        console.error("Signup error:", error);
-        setErrorMessage(error.message);
-        toast.error(error.message);
+  .then(async (result) => {
+    const profile = {
+      displayName: fullname,
+      photoURL: photo,
+    };
+
+    try {
+      await updateProfile(result.user, profile); 
+      console.log(" here is the profile ", updateProfile)
+      toast.success("Account created successfully!");
+
+  
+      await axios.post("http://localhost:5000/add-user", {
+        name: fullname,
+        email: email,
+        photo: photo,
+        role: "donor",
+        loginCount: 1,
       });
-  };
+
+      form.reset();
+      navigate("/login");
+    } catch (error) {
+      console.error("Profile update error:", error);
+      toast.error("Profile update failed");
+    }
+  })
+  .catch((error) => {
+    console.error("Signup error:", error);
+    setErrorMessage(error.message);
+    toast.error(error.message);
+  });
+  }
 
   return (
     <div className=" bg-[url(/bg.png)] bg-contain">

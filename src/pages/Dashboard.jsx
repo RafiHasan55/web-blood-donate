@@ -1,6 +1,7 @@
 import { Navigate } from "react-router";
 import useRole from "../hooks/useRole";
 import AdminDashboard from "./AdminDashboard";
+import DonorDashboard from "./DonorDashboard";
 
 export default function Dashboard() {
   const { role, loading } = useRole();
@@ -9,10 +10,10 @@ export default function Dashboard() {
     return <h1>Loading</h1>;
   }
 
-  if (role === "user") {
-    return <div>User Dashboard</div>;
+  if (role === "donor") {
+    return <DonorDashboard></DonorDashboard>;
   }
-  if (role === "moderator") {
+  if (role === "volunteer") {
     return <div>Moderator Dashboard</div>;
   }
 if (role === "admin") {

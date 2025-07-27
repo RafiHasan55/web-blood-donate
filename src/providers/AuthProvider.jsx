@@ -53,9 +53,12 @@ const AuthProvider = ({ children }) => {
     setUser(currentUser); // set immediately
 
     if (currentUser) {
+      console.log("here is currect user",currentUser)
       axiosPublic
         .post("/add-user", {
+          name: currentUser.displayName,
           email: currentUser.email,
+          photo: currentUser.photoURL,
           role: "donor",
           loginCount: 1,
         })

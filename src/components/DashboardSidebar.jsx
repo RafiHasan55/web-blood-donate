@@ -1,4 +1,3 @@
-
 import { NavLink } from "react-router";
 import useRole from "../hooks/useRole";
 
@@ -19,86 +18,23 @@ export default function DashboardSidebar() {
   );
 
   const { role, loading } = useRole();
-  console.log("Role", role, "loading", loading)
 
-    if (loading) return <h1>Loading...</h1>;
+  if (loading) return <h1>Loading...</h1>;
 
+  const isAdmin = role === "admin";
 
-  if (role === "admin")
-    return (
-      <nav className="flex flex-col gap-4">
-        <NavItem
-          to="/dashboard"
-          // icon={<Home size={20} />}
-          label="Admin Dashboard Home"
-        />
-        <NavItem
-          to="/dashboard/all-users"
-          // icon={<Plus size={20} />}
-          label="All Users"
-        />
-        <NavItem
-          to="/dashboard/add-book"
-          // icon={<Plus size={20} />}
-          label="Add Book"
-        />
-        <NavItem
-          to="/dashboard/my-books"
-          // icon={<List size={20} />}
-          label="My Books"
-        />
-        <NavItem
-          to="/dashboard/my-requests"
-          // icon={<BookOpen size={20} />}
-          label="My Requests"
-        />
-        <NavItem
-          to="/dashboard/profile"
-          // icon={<User size={20} />}
-          label="Profile"
-        />
-      </nav>
-    );
-  if (role === "moderator")
-    return (
-      <nav className="flex flex-col gap-4">
-        <NavItem
-          to="/dashboard"
-          // icon={<Home size={20} />}
-          label="Moderator Dashboard"
-        />
-      </nav>
-    );
-
-  // user sidebar
   return (
     <nav className="flex flex-col gap-4">
-      <NavItem
-        to="/dashboard"
-        // icon={<Home size={20} />}
-        label="User Dashboard"
-      />
+      <NavItem to="/dashboard" label={`${role?.charAt(0).toUpperCase() + role?.slice(1)} Dashboard Home`} />
 
-      <NavItem
-        to="/dashboard/add-book"
-        // icon={<Plus size={20} />}
-        label="Add Book"
-      />
-      <NavItem
-        to="/dashboard/my-books"
-        // icon={<List size={20} />}
-        label="My Books"
-      />
-      <NavItem
-        to="/dashboard/my-requests"
-        // icon={<BookOpen size={20} />}
-        label="My Requests"
-      />
-      <NavItem
-        to="/dashboard/profile"
-        // icon={<User size={20} />}
-        label="Profile"
-      />
+      {isAdmin && (
+        <NavItem to="/dashboard/all-users" label="All Users" />
+      )}
+
+      <NavItem to="/dashboard/donation-request" label="Donation Request" />
+      <NavItem to="/dashboard/my-books" label="My Books" />
+      <NavItem to="/dashboard/my-requests" label="My Requests" />
+      <NavItem to="/dashboard/profile" label="Profile" />
     </nav>
   );
 }

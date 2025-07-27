@@ -2,7 +2,7 @@ import axios from "axios";
 import { createBrowserRouter } from "react-router";
 import DashboardLayout from "../layouts/DashboardLayout";
 import RootLayout from "../layouts/RootLayout";
-import AddBooks from "../pages/AddBooks";
+import AddBooks from "../pages/CreateDonationRequest";
 import AllUsers from "../pages/AllUsers";
 import AvailableBooks from "../pages/AvailableBooks";
 import Dashboard from "../pages/Dashboard";
@@ -14,6 +14,7 @@ import MyBooks from "../pages/MyBooks";
 import Register from "../pages/Register";
 import PrivateRoute from "./PrivateRoute";
 import ProfilePage from "../pages/ProfilePage";
+import CreateDonationRequest from "../pages/CreateDonationRequest";
 
 const mainRoutes = createBrowserRouter([
   {
@@ -50,8 +51,8 @@ const mainRoutes = createBrowserRouter([
             element: <Dashboard />,
           },
           {
-            path: "add-book",
-            element: <AddBooks />,
+            path: "donation-request",
+            element: <CreateDonationRequest></CreateDonationRequest>,
           },
           {
             path: "all-users",
