@@ -7,6 +7,7 @@ import { AuthContext } from "../providers/AuthProvider";
 
 import { useLocation, useNavigate } from "react-router";
 import loginAnimation from "../assets/loginAnimation.json";
+import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
@@ -22,7 +23,8 @@ const Login = () => {
 
     signIn(email, pass)
       .then((res) => {        
-  
+        toast.success('Login Successfully');
+        form.reset();
       })
       .catch((err) => {
         console.log(err);
@@ -89,6 +91,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+   <ToastContainer />
     </div>
   );
 };
