@@ -3,11 +3,27 @@ import { CgMenuMotion } from "react-icons/cg";
 import { RiMenuAddLine } from "react-icons/ri";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../providers/AuthProvider";
+import { toast } from "react-toastify";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isPageLoad, setisPageLoad] = useState(false);
+
+
+    const handleLogout = () => {
+    logOut()
+      .then(() => {
+        toast.success("Logout successful!");
+       
+      })
+      .catch((error) => {
+        toast.error("Logout failed: " + error.message);
+      });
+  };
+
+
+
   const menu = [
     {
       name: "Home",
@@ -47,7 +63,7 @@ const Header = () => {
           ))}
           {user && user?.email ? (
             <>
-              <button className="cursor-pointer" onClick={logOut}>
+              <button className="cursor-pointer" onClick={handleLogout}>
                 Logout
               </button>
             </>
@@ -97,7 +113,7 @@ const Header = () => {
               ))}
               {user && user?.email ? (
                 <>
-                  <button className="cursor-pointer" onClick={logOut}>
+                  <button className="cursor-pointer" onClick={handleLogout}>
                     Logout
                   </button>
                 </>

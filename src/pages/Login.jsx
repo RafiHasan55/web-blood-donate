@@ -26,8 +26,8 @@ const Login = () => {
         toast.success('Login Successfully');
         form.reset();
       })
-      .catch((err) => {
-        console.log(err);
+        .catch((error) => {
+        toast.error("Logout failed: " + error.message);
       });
   };
   return (

@@ -47,28 +47,34 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      console.log("🚀 ~ unsubscribe ~ currentUser:", currentUser);
+  const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    console.log("🚀 ~ unsubscribe ~ currentUser:", currentUser);
 
-      if (currentUser) {
-        axiosPublic
-          .post("/add-user", {
-            email: currentUser.email,
-            role: "user",
-            loginCount: 1,
-          })
-          .then((res) => {
-            setUser(currentUser);
-            console.log(res.data);
-          });
-      }
+    if (currentUser) {
+      axiosPublic
+        .post("/add-user", {
+          email: currentUser.email,
+          role: "user",
+          loginCount: 1,
+        })
+        .then((res) => {
+          setUser(currentUser);
+          console.log(res.data);
+        })
+        .catch((err) => {
+          setUser(currentUser);
+        });
+    } else {
+      setUser(null); 
+    }
 
-      setLoading(false);
-    });
-    return () => {
-      unsubscribe();
-    };
-  }, []);
+    setLoading(false);
+  });
+
+  return () => {
+    unsubscribe();
+  };
+}, []);
 
   const authInfo = {
     user,
