@@ -1,38 +1,110 @@
 import Lottie from "lottie-react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { BiEnvelope, BiImageAdd, BiKey, BiUser } from "react-icons/bi";
 import { useNavigate } from "react-router";
 import happy from "../assets/happy.json";
 import Social from "../components/Social";
 import Title from "../components/Title";
 import { AuthContext } from "../providers/AuthProvider";
+import { toast, ToastContainer } from "react-toastify";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, updateProfile } from "firebase/auth";
+import { auth } from "../firebase/firebase.config";
+const provider = new GoogleAuthProvider();
 
 const Register = () => {
-  const goTo = useNavigate();
-  const { createUser, signIn, user, setUser, updateUser } =
-    useContext(AuthContext);
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const name = form.name.value;
-    const image = form.image.value;
-    const email = form.email.value;
-    const pass = form.pass.value;
+  
+  // const goTo = useNavigate();
+  // const { createUser, signIn, user, setUser, updateUser } =
+  //   useContext(AuthContext);
 
-    console.log(name, email, pass);
 
-    createUser(email, pass)
-      .then((res) => {
-        updateUser({ displayName: name }).then(() => {
-          setUser({ ...res.user, displayName: name, photoURL: image });
-          goTo(`${location.state ? location.state : "/"}`);
-          console.log(res.data);
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const form = e.target;
+  //   const name = form.name.value;
+  //   const image = form.image.value;
+  //   const email = form.email.value;
+  //   const pass = form.pass.value;
+
+  //   console.log(name, email, pass);
+
+  //   createUser(email, pass)
+  //     .then((res) => {
+  //       updateUser({ displayName: name }).then(() => {
+  //         setUser({ ...res.user, displayName: name, photoURL: image });
+  //         goTo(`${location.state ? location.state : "/"}`);
+  //         console.log(res.data);
+  //         toast.success("Register Successfully")
+  //       });
+  //     })
+  //     .catch((error) => {
+  //      toast.error("Logout failed: " + error.message);
+  //     });
+  // };
+
+
+
+
+
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleSignUp = (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const fullname = form.fullname.value.trim();
+  const email = form.email.value.trim();
+  const photo = form.photo.value.trim();
+  const password = form.password.value;
+
+  if (!fullname || !email || !photo || !password) {
+    toast.error("Please fill out all fields!");
+    return;
+  }
+
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+  if (!passwordRegex.test(password)) {
+    toast.error("Password must be at least 8 characters and include uppercase, lowercase, and a number.");
+    return;
+  }
+
+  setErrorMessage("");
+
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((result) => {
+      const profile = {
+        displayName: fullname,
+        photoURL: photo,
+      };
+      updateProfile(result.user, profile)
+        .then(() => {
+          toast.success("Account created successfully!");
+          form.reset();
+          navigate("/login");
+        })
+        .catch((error) => {
+          console.error("Profile update error:", error);
+          toast.error("Profile update failed");
         });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+    })
+    .catch((error) => {
+      console.error("Signup error:", error);
+      setErrorMessage(error.message);
+      toast.error(error.message);
+    });
+};
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <div className=" bg-[url(/bg.png)] bg-contain">
@@ -45,7 +117,7 @@ const Register = () => {
           <div className="flex  justify-between items-center gap-5 pt-8">
             <div className="login-for flex-1">
               <form
-                onSubmit={handleSubmit}
+                onSubmit={handleSignUp}
                 className="bg-white p-5 flex flex-col gap-8 backdrop-blur-sm bg-opacity-10 shadow-lg rounded-lg"
               >
                 <div className="flex justify-start items-center">
@@ -55,7 +127,7 @@ const Register = () => {
                   <input
                     className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-orange-400 transition-all  duration-200"
                     type="text"
-                    name="name"
+                    name="fullname"
                     placeholder="Enter Full Name"
                   />
                 </div>
@@ -67,7 +139,7 @@ const Register = () => {
                   <input
                     className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-orange-400 transition-all  duration-200"
                     type="text"
-                    name="image"
+                    name="photo"
                     placeholder="Enter Image Url"
                   />
                 </div>
@@ -90,7 +162,7 @@ const Register = () => {
                   <input
                     className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-orange-400 transition-all  duration-200"
                     type="password"
-                    name="pass"
+                    name="password"
                     placeholder="Enter Password"
                   />
                 </div>
@@ -103,6 +175,8 @@ const Register = () => {
                   className="btn cursor-pointer"
                 />
               </form>
+              {errorMessage && <p className="text-red-500 text-center mt-2">{errorMessage}</p>}
+
             </div>
             <Social></Social>
             <div className="lottie flex-1 flex mx-20 ">
@@ -111,6 +185,7 @@ const Register = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
