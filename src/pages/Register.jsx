@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { BiEnvelope, BiImageAdd, BiKey, BiUser } from "react-icons/bi";
 import { useNavigate } from "react-router";
 import happy from "../assets/happy.json";
@@ -13,9 +13,14 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
+import DistrictSelect from "./DistrictSelect";
+import UpazilaSelect from "./UpazilaSelect";
+
 const provider = new GoogleAuthProvider();
 
 const Register = () => {
+  const [districtId, setDistrictId] = useState("");
+
   const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
@@ -104,6 +109,35 @@ const Register = () => {
                     placeholder="Enter Image Url"
                   />
                 </div>
+
+                <div className="flex justify-start items-center">
+                  <div className="">
+                    <span className="text-2xl font-semibold text-slate-600 mr-2">
+                      🩸
+                    </span>
+                  </div>
+                  <select
+                    defaultValue=""
+                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-orange-400 transition-all duration-200"
+                    name="editor"
+                  >
+                    <option disabled value="">
+                      Blood Group
+                    </option>
+                    <option value="vscode">A+</option>
+                    <option value="vscode-fork">A-</option>
+                    <option value="other">B+</option>
+                    <option value="other">B-</option>
+                    <option value="other">AB+</option>
+                    <option value="other">AB-</option>
+                    <option value="other">O+</option>
+                    <option value="other">O-</option>
+                  </select>
+                </div>
+
+                <DistrictSelect onChange={setDistrictId} />
+                <UpazilaSelect selectedDistrictId={districtId} />
+
                 <div className="flex justify-start items-center">
                   <div className="">
                     <BiEnvelope className="text-3xl text-slate-500"></BiEnvelope>
