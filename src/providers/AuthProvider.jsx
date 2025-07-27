@@ -16,7 +16,7 @@ import { auth } from "../firebase/firebase.config";
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const axiosPublic = useAxiosPublic();
 
@@ -48,7 +48,9 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-    console.log("🚀 ~ unsubscribe ~ currentUser:", currentUser);
+    console.log("🚀 ~ Auth State Changed ~ currentUser:", currentUser);
+
+    setUser(currentUser); // set immediately
 
     if (currentUser) {
       axiosPublic
@@ -58,23 +60,19 @@ const AuthProvider = ({ children }) => {
           loginCount: 1,
         })
         .then((res) => {
-          setUser(currentUser);
-          console.log(res.data);
+          console.log("User synced to DB:", res.data);
         })
         .catch((err) => {
-          setUser(currentUser);
+          console.error("DB sync failed:", err);
         });
-    } else {
-      setUser(null); 
     }
 
     setLoading(false);
   });
 
-  return () => {
-    unsubscribe();
-  };
+  return () => unsubscribe();
 }, []);
+
 
   const authInfo = {
     user,

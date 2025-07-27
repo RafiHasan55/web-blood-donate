@@ -12,6 +12,8 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import MyBooks from "../pages/MyBooks";
 import Register from "../pages/Register";
+import PrivateRoute from "./PrivateRoute";
+import ProfilePage from "../pages/ProfilePage";
 
 const mainRoutes = createBrowserRouter([
   {
@@ -39,13 +41,14 @@ const mainRoutes = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        element: <DashboardLayout />,
+        element: <PrivateRoute>
+          <DashboardLayout />
+        </PrivateRoute>,
         children: [
           {
             index: true,
             element: <Dashboard />,
           },
-          ,
           {
             path: "add-book",
             element: <AddBooks />,
@@ -61,6 +64,10 @@ const mainRoutes = createBrowserRouter([
           {
             path: "my-requests",
             element: <MyBooks />,
+          },
+          {
+            path: "profile",
+            element: <ProfilePage />,
           },
         ],
       },

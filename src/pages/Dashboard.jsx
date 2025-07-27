@@ -15,10 +15,10 @@ export default function Dashboard() {
   if (role === "moderator") {
     return <div>Moderator Dashboard</div>;
   }
-
-  if (role === "admin") {
-    return <AdminDashboard />;
-  }
+if (role === "admin") {
+  console.log("Rendering AdminDashboard");
+  return <AdminDashboard />;
+}
 
   return <Navigate to={"/"} />;
 }

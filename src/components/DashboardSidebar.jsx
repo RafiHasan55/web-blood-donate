@@ -1,3 +1,4 @@
+
 import { NavLink } from "react-router";
 import useRole from "../hooks/useRole";
 
@@ -18,6 +19,7 @@ export default function DashboardSidebar() {
   );
 
   const { role, loading } = useRole();
+  console.log("Role", role, "loading", loading)
 
     if (loading) return <h1>Loading...</h1>;
 

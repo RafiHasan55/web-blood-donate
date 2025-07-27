@@ -12,6 +12,6 @@ export default function useRole() {
       setRole(res.data.role);
       setLoading(false);
     });
-  }), [];
+  }, [axiosSecure]);
   return { role, loading };
 }

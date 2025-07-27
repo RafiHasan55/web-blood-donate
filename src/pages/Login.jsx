@@ -5,7 +5,7 @@ import Social from "../components/Social";
 import Title from "../components/Title";
 import { AuthContext } from "../providers/AuthProvider";
 
-import { useLocation, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import loginAnimation from "../assets/loginAnimation.json";
 import { toast, ToastContainer } from "react-toastify";
 
@@ -82,6 +82,13 @@ const Login = () => {
                   value="Login Now"
                   className="btn cursor-pointer"
                 />
+<p>
+  Create a new account{" "}
+  <Link to="/registration">
+    <span className="text-blue-500 hover:underline">Register</span>
+  </Link>
+</p>
+
               </form>
             </div>
             <Social></Social>

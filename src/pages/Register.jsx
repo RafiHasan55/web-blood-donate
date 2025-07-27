@@ -1,7 +1,7 @@
 import Lottie from "lottie-react";
 import { useState } from "react";
 import { BiEnvelope, BiImageAdd, BiKey, BiUser } from "react-icons/bi";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import happy from "../assets/happy.json";
 import Social from "../components/Social";
 import Title from "../components/Title";
@@ -32,6 +32,7 @@ const Register = () => {
     const email = form.email.value.trim();
     const photo = form.photo.value.trim();
     const password = form.password.value;
+
 
     if (!fullname || !email || !photo || !password) {
       toast.error("Please fill out all fields!");
@@ -167,6 +168,13 @@ const Register = () => {
                   value="Register Now"
                   className="btn cursor-pointer"
                 />
+                <p>
+  Already have an Account?{" "}
+  <Link to="/login">
+    <span className="text-blue-500 hover:underline">Login</span>
+  </Link>
+</p>
+
               </form>
               {errorMessage && (
                 <p className="text-red-500 text-center mt-2">{errorMessage}</p>
