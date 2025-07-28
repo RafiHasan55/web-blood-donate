@@ -18,6 +18,7 @@ import CreateDonationRequest from "../pages/CreateDonationRequest";
 import DonationDetails from "../pages/DonationDetails";
 import EditDonationRequest from "../pages/EditDonationRequest";
 import MyDonationRequests from "../pages/MyDonationRequests";
+import AllBloodDonationRequests from "../pages/AllBloodDonationRequests";
 
 const mainRoutes = createBrowserRouter([
   {
@@ -78,6 +79,10 @@ const mainRoutes = createBrowserRouter([
           {
   path: "edit-donation/:id",
   element: <EditDonationRequest></EditDonationRequest>,
+},
+{
+  path: "all-blood-donation-request",
+  element: <AllBloodDonationRequests />,
 },
 {
   path: "donation-details/:id",
