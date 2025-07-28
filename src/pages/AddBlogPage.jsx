@@ -1,7 +1,5 @@
 import { useState } from "react";
-
 import JoditEditor from "jodit-react";
-
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useNavigate } from "react-router";
 import axios from "axios";
@@ -40,6 +38,10 @@ export default function AddBlogPage() {
     navigate("/dashboard/content-management");
   };
 
+  const handleCancel = () => {
+    navigate("/dashboard/content-management");
+  };
+
   return (
     <div className="p-6 max-w-4xl mx-auto">
       <h2 className="text-2xl font-bold mb-4">Add New Blog</h2>
@@ -60,14 +62,23 @@ export default function AddBlogPage() {
           }}
           className="w-full"
         />
-
         <JoditEditor value={content} onChange={setContent} />
-        <button
-          className="bg-red-600 text-white px-6 py-2 rounded"
-          type="submit"
-        >
-          Create
-        </button>
+
+        <div className="flex gap-4">
+          <button
+            className="bg-red-600 text-white px-6 py-2 rounded"
+            type="submit"
+          >
+            Create
+          </button>
+          <button
+            type="button"
+            onClick={handleCancel}
+            className="bg-gray-400 text-white px-6 py-2 rounded"
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );
