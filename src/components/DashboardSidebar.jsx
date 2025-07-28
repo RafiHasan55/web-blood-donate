@@ -31,7 +31,7 @@ export default function DashboardSidebar() {
         <NavItem to="/dashboard/all-users" label="All Users" />
       )}
 
-      <NavItem to="/dashboard/donation-request" label="Donation Request" />
+      <NavItem to="/dashboard/create-donation-request" label="Donation Request" />
       <NavItem to="/dashboard/my-books" label="My Books" />
       <NavItem to="/dashboard/my-requests" label="My Requests" />
       <NavItem to="/dashboard/profile" label="Profile" />

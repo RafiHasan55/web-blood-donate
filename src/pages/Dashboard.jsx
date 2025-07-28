@@ -16,10 +16,10 @@ export default function Dashboard() {
   if (role === "volunteer") {
     return <div>Moderator Dashboard</div>;
   }
-if (role === "admin") {
-  console.log("Rendering AdminDashboard");
-  return <AdminDashboard />;
-}
+  if (role === "admin") {
+    console.log("Rendering AdminDashboard");
+    return <AdminDashboard />;
+  }
 
   return <Navigate to={"/"} />;
 }

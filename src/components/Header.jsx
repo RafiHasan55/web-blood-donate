@@ -10,19 +10,15 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isPageLoad, setisPageLoad] = useState(false);
 
-
-    const handleLogout = () => {
+  const handleLogout = () => {
     logOut()
       .then(() => {
         toast.success("Logout successful!");
-       
       })
       .catch((error) => {
         toast.error("Logout failed: " + error.message);
       });
   };
-
-
 
   const menu = [
     {

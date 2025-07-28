@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-
 import { toast } from "react-toastify";
-import useAxiosSecure from "../hooks/useAxiosSecure";
+
 import DistrictSelect from "./DistrictSelect";
 import UpazilaSelect from "./UpazilaSelect";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 export default function CreateDonationRequest() {
   const { user } = useContext(AuthContext);
@@ -23,24 +23,32 @@ export default function CreateDonationRequest() {
     message: "",
   });
 
-  // check if user is blocked or not
-  useEffect(() => {
-    axiosSecure.get("/get-user-role").then(({ data }) => {
-      if (data.status === "active") {
-        setStatus("active");
-      } else {
-        setStatus("blocked");
-      }
-    });
-  }, [axiosSecure]);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  useEffect(() => {
+    const checkStatus = async () => {
+      try {
+        const res = await axiosSecure.get("/get-user-role");
+        if (res.data.status === "active") {
+          setStatus("active");
+        } else {
+          setStatus("blocked");
+        }
+      } catch (err) {
+        console.error("❌ Error checking user status:", err);
+        toast.error("Authorization failed. Please login again.");
+      }
+    };
+
+    if (user) checkStatus();
+  }, [user, axiosSecure]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const payload = {
       ...formData,
       requester_name: user.displayName,
@@ -52,6 +60,8 @@ export default function CreateDonationRequest() {
     try {
       await axiosSecure.post("/donation-requests", payload);
       toast.success("Donation request submitted!");
+
+      // reset form
       setFormData({
         recipient_name: "",
         district_id: "",
@@ -69,8 +79,14 @@ export default function CreateDonationRequest() {
     }
   };
 
-  if (status === "checking") return <p className="text-center mt-10">Checking user status...</p>;
-  if (status === "blocked") return <p className="text-center mt-10 text-red-600">❌ You are blocked from creating requests.</p>;
+  if (status === "checking")
+    return <p className="text-center mt-10">Checking user status...</p>;
+  if (status === "blocked")
+    return (
+      <p className="text-center mt-10 text-red-600">
+        ❌ You are blocked from creating requests.
+      </p>
+    );
 
   return (
     <form
@@ -119,7 +135,11 @@ export default function CreateDonationRequest() {
           <DistrictSelect
             selected={formData.district_id}
             onChange={(id) =>
-              setFormData((prev) => ({ ...prev, district_id: id, upazila_id: "" }))
+              setFormData((prev) => ({
+                ...prev,
+                district_id: id,
+                upazila_id: "",
+              }))
             }
           />
         </div>

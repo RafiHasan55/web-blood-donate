@@ -42,16 +42,18 @@ const mainRoutes = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        element: <PrivateRoute>
-          <DashboardLayout />
-        </PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <DashboardLayout />
+          </PrivateRoute>
+        ),
         children: [
           {
             index: true,
             element: <Dashboard />,
           },
           {
-            path: "donation-request",
+            path: "create-donation-request",
             element: <CreateDonationRequest></CreateDonationRequest>,
           },
           {

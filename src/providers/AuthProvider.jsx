@@ -47,35 +47,42 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-  const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-    console.log("🚀 ~ Auth State Changed ~ currentUser:", currentUser);
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      console.log("🚀 ~ Auth State Changed ~ currentUser:", currentUser);
 
-    setUser(currentUser); // set immediately
-
-    if (currentUser) {
-      console.log("here is currect user",currentUser)
-      axiosPublic
-        .post("/add-user", {
-          name: currentUser.displayName,
+      if (currentUser) {
+        const token = await currentUser.getIdToken();
+        setUser({
+          uid: currentUser.uid,
+          displayName: currentUser.displayName,
           email: currentUser.email,
-          photo: currentUser.photoURL,
-          role: "donor",
-          loginCount: 1,
-        })
-        .then((res) => {
-          console.log("User synced to DB:", res.data);
-        })
-        .catch((err) => {
-          console.error("DB sync failed:", err);
+          photoURL: currentUser.photoURL,
+          accessToken: token,
         });
-    }
 
-    setLoading(false);
-  });
+        axiosPublic
+          .post("/add-user", {
+            name: currentUser.displayName,
+            email: currentUser.email,
+            photo: currentUser.photoURL,
+            loginCount: 1,
+          })
 
-  return () => unsubscribe();
-}, []);
+          .then((res) => {
+            console.log("User synced to DB:", res.data);
+          })
+          .catch((err) => {
+            console.error("DB sync failed:", err);
+          });
+      } else {
+        setUser(null);
+      }
 
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   const authInfo = {
     user,

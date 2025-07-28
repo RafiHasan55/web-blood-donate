@@ -29,19 +29,27 @@ const Register = () => {
   const handleSignUp = (e) => {
     e.preventDefault();
     const form = e.target;
-    const fullname = form.fullname.value.trim();
-    const email = form.email.value.trim();
-    const photo = form.photo.value.trim();
-    const password = form.password.value;
+    const userData = {
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      photo: form.photo.value.trim(),
+      blood: form.blood.value,
+      password: form.password.value,
+    };
+    console.log(userData);
 
-
-    if (!fullname || !email || !photo || !password) {
+    if (
+      !userData.name ||
+      !userData.email ||
+      !userData.photo ||
+      !userData.password
+    ) {
       toast.error("Please fill out all fields!");
       return;
     }
 
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-    if (!passwordRegex.test(password)) {
+    if (!passwordRegex.test(userData.password)) {
       toast.error(
         "Password must be at least 8 characters and include uppercase, lowercase, and a number."
       );
@@ -50,40 +58,39 @@ const Register = () => {
 
     setErrorMessage("");
 
-    createUserWithEmailAndPassword(auth, email, password)
-  .then(async (result) => {
-    const profile = {
-      displayName: fullname,
-      photoURL: photo,
-    };
+    createUserWithEmailAndPassword(auth, userData.email, userData.password)
+      .then(async (result) => {
+        const profile = {
+          displayName: userData.name,
+          photoURL: userData.photo,
+        };
 
-    try {
-      await updateProfile(result.user, profile); 
-      console.log(" here is the profile ", updateProfile)
-      toast.success("Account created successfully!");
+        try {
+          await updateProfile(result.user, profile);
+          console.log(" here is the profile ", updateProfile);
+          toast.success("Account created successfully!");
 
-  
-      await axios.post("http://localhost:5000/add-user", {
-        name: fullname,
-        email: email,
-        photo: photo,
-        role: "donor",
-        loginCount: 1,
+          await axios.post("http://localhost:5000/add-user", {
+            name: userData.name,
+            email: userData.email,
+            photo: userData.photo,
+            role: "donor",
+            loginCount: 1,
+          });
+
+          form.reset();
+          navigate("/login");
+        } catch (error) {
+          console.error("Profile update error:", error);
+          toast.error("Profile update failed");
+        }
+      })
+      .catch((error) => {
+        console.error("Signup error:", error);
+        setErrorMessage(error.message);
+        toast.error(error.message);
       });
-
-      form.reset();
-      navigate("/login");
-    } catch (error) {
-      console.error("Profile update error:", error);
-      toast.error("Profile update failed");
-    }
-  })
-  .catch((error) => {
-    console.error("Signup error:", error);
-    setErrorMessage(error.message);
-    toast.error(error.message);
-  });
-  }
+  };
 
   return (
     <div className=" bg-[url(/bg.png)] bg-contain">
@@ -106,7 +113,7 @@ const Register = () => {
                   <input
                     className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-orange-400 transition-all  duration-200"
                     type="text"
-                    name="fullname"
+                    name="name"
                     placeholder="Enter Full Name"
                   />
                 </div>
@@ -130,21 +137,21 @@ const Register = () => {
                     </span>
                   </div>
                   <select
+                    name="blood"
                     defaultValue=""
                     className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-orange-400 transition-all duration-200"
-                    name="editor"
                   >
                     <option disabled value="">
                       Blood Group
                     </option>
-                    <option value="vscode">A+</option>
-                    <option value="vscode-fork">A-</option>
-                    <option value="other">B+</option>
-                    <option value="other">B-</option>
-                    <option value="other">AB+</option>
-                    <option value="other">AB-</option>
-                    <option value="other">O+</option>
-                    <option value="other">O-</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
                   </select>
                 </div>
 
@@ -181,12 +188,11 @@ const Register = () => {
                   className="btn cursor-pointer"
                 />
                 <p>
-  Already have an Account?{" "}
-  <Link to="/login">
-    <span className="text-blue-500 hover:underline">Login</span>
-  </Link>
-</p>
-
+                  Already have an Account?{" "}
+                  <Link to="/login">
+                    <span className="text-blue-500 hover:underline">Login</span>
+                  </Link>
+                </p>
               </form>
               {errorMessage && (
                 <p className="text-red-500 text-center mt-2">{errorMessage}</p>
