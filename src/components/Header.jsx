@@ -23,6 +23,7 @@ const Header = () => {
 
   const menu = [
     { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
     { name: "Our Blogs", path: "/blog" },
     { name: "Donation Requests", path: "/available-books" },
   ];

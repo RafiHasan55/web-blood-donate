@@ -23,6 +23,7 @@ import ContentManagementPage from "../pages/ContentManagementPage";
 import AddBlogPage from "../pages/AddBlogPage";
 import PublicBlogPage from "../pages/PublicBlogPage";
 import SearchDonorPage from "../pages/SearchDonorPage";
+import AboutUsPage from "../pages/AboutUsPage";
 
 const mainRoutes = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const mainRoutes = createBrowserRouter([
         element: <AvailableBooks />,
       },
       {
+  path: "/about",
+  element: <AboutUsPage></AboutUsPage>
+},
+      {
   path: "/blog",
   element: <PublicBlogPage />,
 },
@@ -46,6 +51,7 @@ const mainRoutes = createBrowserRouter([
   path: "/search",
   element: <SearchDonorPage />,
 },
+
 
       {
         path: "/details/:bookId",
