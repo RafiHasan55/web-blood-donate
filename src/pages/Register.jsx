@@ -74,6 +74,7 @@ const Register = () => {
             name: userData.name,
             email: userData.email,
             photo: userData.photo,
+            blood: userData.blood,
             role: "donor",
             loginCount: 1,
           });

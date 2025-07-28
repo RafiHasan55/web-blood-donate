@@ -15,6 +15,9 @@ import Register from "../pages/Register";
 import PrivateRoute from "./PrivateRoute";
 import ProfilePage from "../pages/ProfilePage";
 import CreateDonationRequest from "../pages/CreateDonationRequest";
+import DonationDetails from "../pages/DonationDetails";
+import EditDonationRequest from "../pages/EditDonationRequest";
+import MyDonationRequests from "../pages/MyDonationRequests";
 
 const mainRoutes = createBrowserRouter([
   {
@@ -66,12 +69,20 @@ const mainRoutes = createBrowserRouter([
           },
           {
             path: "my-requests",
-            element: <MyBooks />,
+            element: <MyDonationRequests></MyDonationRequests>,
           },
           {
             path: "profile",
             element: <ProfilePage />,
           },
+          {
+  path: "edit-donation/:id",
+  element: <EditDonationRequest></EditDonationRequest>,
+},
+{
+  path: "donation-details/:id",
+  element: <DonationDetails></DonationDetails>,
+}
         ],
       },
       {

@@ -6,7 +6,7 @@ import { Link } from "react-router";
 export default function MyDonationRequests() {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
-
+ const [donations, setDonations] = useState([]);
   const [requests, setRequests] = useState([]);
   const [statusFilter, setStatusFilter] = useState("all");
   const [page, setPage] = useState(1);
@@ -26,6 +26,29 @@ export default function MyDonationRequests() {
   }, [user, axiosSecure, page, statusFilter]);
 
   const totalPages = Math.ceil(total / limit);
+
+
+    const handleDelete = async (id) => {
+  if (confirm("Are you sure you want to delete this request?")) {
+    try {
+      await axiosSecure.delete(`/donation-requests/${id}`);
+      setDonations((prev) => prev.filter((d) => d._id !== id));
+    } catch (err) {
+      console.error("Delete failed:", err);
+    }
+  }
+};
+
+const handleStatusChange = async (id, newStatus) => {
+  try {
+    await axiosSecure.patch(`/donation-requests/${id}`, { status: newStatus });
+    setDonations((prev) =>
+      prev.map((d) => (d._id === id ? { ...d, status: newStatus } : d))
+    );
+  } catch (err) {
+    console.error("Status update failed:", err);
+  }
+};
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
@@ -65,19 +88,19 @@ export default function MyDonationRequests() {
               {requests.length > 0 ? (
                 requests.map((donation) => (
                   <tr key={donation._id} className="border-t hover:bg-gray-50">
-                    <td className="p-2">{donation.recipientName}</td>
-                    <td className="p-2">{donation.recipientDistrict}, {donation.recipientUpazila}</td>
-                    <td className="p-2">{donation.donationDate}</td>
-                    <td className="p-2">{donation.donationTime}</td>
-                    <td className="p-2">{donation.bloodGroup}</td>
+                    <td className="p-2">{donation.recipient_name}</td>
+                    <td className="p-2">{donation.district_id}, {donation.upazila_id}</td>
+                    <td className="p-2">{donation.donation_date}</td>
+                    <td className="p-2">{donation.donation_time}</td>
+                    <td className="p-2">{donation.blood_group}</td>
                     <td className="p-2 capitalize">{donation.status}</td>
                     <td className="p-2 space-x-2">
-                      {donation.status === "inprogress" && (
-                        <>
-                          <button className="text-green-600">Done</button>
-                          <button className="text-red-500">Cancel</button>
-                        </>
-                      )}
+                                   {donation.status === "inprogress" && (
+  <>
+    <button className="text-green-600" onClick={() => handleStatusChange(donation._id, "done")}>Done</button>
+    <button className="text-red-500" onClick={() => handleStatusChange(donation._id, "canceled")}>Cancel</button>
+  </>
+)}
                       <Link
                         to={`/dashboard/edit-donation/${donation._id}`}
                         className="text-blue-600 underline"

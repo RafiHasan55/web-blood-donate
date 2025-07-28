@@ -9,6 +9,8 @@ const ProfilePage = () => {
   const [editMode, setEditMode] = useState(false);
   const [formData, setFormData] = useState({});
 
+  console.log(formData)
+
   useEffect(() => {
     axiosSecure
       .get("/user/profile")
@@ -47,7 +49,12 @@ const ProfilePage = () => {
     <div className="max-w-2xl mx-auto mt-10 bg-white p-8 rounded-2xl shadow-lg border">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-3xl font-bold text-gray-800">
-          👤 Profile Dashboard
+        <div className="avatar">
+  <div className="ring-primary ring-offset-base-100 w-12 rounded-full ring-2 ring-offset-2">
+    <img src={formData.photo} />
+  </div>
+</div>
+          <span className="ml-2">Profile Dashboard</span>
         </h2>
         {!editMode && (
           <button
@@ -90,8 +97,8 @@ const ProfilePage = () => {
           <label className="block font-semibold mb-1">Photo URL</label>
           <input
             type="text"
-            name="avatar"
-            value={formData.avatar || ""}
+            name="photo"
+            value={formData.photo || ""}
             onChange={handleChange}
             readOnly={!editMode}
             className="input input-bordered w-full"
@@ -101,8 +108,8 @@ const ProfilePage = () => {
         <div>
           <label className="block font-semibold mb-1">Blood Group</label>
           <select
-            name="bloodGroup"
-            value={formData.bloodGroup || ""}
+            name="blood"
+            value={formData.blood || ""}
             onChange={handleChange}
             disabled={!editMode}
             className="input input-bordered w-full"
