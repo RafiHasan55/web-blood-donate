@@ -21,6 +21,7 @@ import MyDonationRequests from "../pages/MyDonationRequests";
 import AllBloodDonationRequests from "../pages/AllBloodDonationRequests";
 import ContentManagementPage from "../pages/ContentManagementPage";
 import AddBlogPage from "../pages/AddBlogPage";
+import PublicBlogPage from "../pages/PublicBlogPage";
 
 const mainRoutes = createBrowserRouter([
   {
@@ -36,6 +37,11 @@ const mainRoutes = createBrowserRouter([
         path: "/available-books",
         element: <AvailableBooks />,
       },
+      {
+  path: "/blog",
+  element: <PublicBlogPage />,
+},
+
       {
         path: "/details/:bookId",
         element: <DetailsPage />,
