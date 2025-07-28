@@ -30,7 +30,7 @@ const Header = () => {
       path: "/available-books",
     },
     {
-      name: "Blogs",
+      name: "Our Blogs",
       path: "/blog",
     },
     {
