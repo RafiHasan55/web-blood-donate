@@ -35,6 +35,8 @@ const Register = () => {
       photo: form.photo.value.trim(),
       blood: form.blood.value,
       password: form.password.value,
+      repassword: form.repassword.value
+
     };
     console.log(userData);
 
@@ -42,11 +44,20 @@ const Register = () => {
       !userData.name ||
       !userData.email ||
       !userData.photo ||
+      !userData.blood ||
+      !userData.repassword ||
       !userData.password
     ) {
       toast.error("Please fill out all fields!");
       return;
     }
+
+     // Password match check
+    if (userData.password !== userData.repassword) {
+      toast.error("Passwords do not match!");
+      return;
+    }
+
 
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
     if (!passwordRegex.test(userData.password)) {
@@ -180,6 +191,17 @@ const Register = () => {
                     type="password"
                     name="password"
                     placeholder="Enter Password"
+                  />
+                </div>
+                <div className="flex justify-start items-center">
+                  <div className="">
+                    <BiKey className="text-3xl text-slate-500"></BiKey>
+                  </div>
+                  <input
+                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-orange-400 transition-all  duration-200"
+                    type="password"
+                    name="repassword"
+                    placeholder="Enter Re-Password"
                   />
                 </div>
 

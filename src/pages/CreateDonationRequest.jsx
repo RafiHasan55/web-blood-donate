@@ -28,23 +28,26 @@ export default function CreateDonationRequest() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  useEffect(() => {
-    const checkStatus = async () => {
-      try {
-        const res = await axiosSecure.get("/get-user-role");
-        if (res.data.status === "active") {
-          setStatus("active");
-        } else {
-          setStatus("blocked");
-        }
-      } catch (err) {
-        console.error("❌ Error checking user status:", err);
-        toast.error("Authorization failed. Please login again.");
-      }
-    };
+useEffect(() => {
+  const checkStatus = async () => {
+    try {
+      const res = await axiosSecure.get("/get-user-role");
+      const { status } = res.data;
 
-    if (user) checkStatus();
-  }, [user, axiosSecure]);
+      if (status === "active") {
+        setStatus("active");
+      } else {
+        setStatus("blocked");
+      }
+    } catch (err) {
+      console.error("❌ Error checking user status:", err);
+      toast.error("Authorization failed. Please login again.");
+    }
+  };
+
+  if (user) checkStatus();
+}, [user, axiosSecure]);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -1,12 +1,50 @@
-# React + Vite
+# 🩸 Blood Donation Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A MERN stack-based web application to connect blood donors with recipients efficiently, featuring donation requests, blog content, user management, and funding support.
 
-Currently, two official plugins are available:
+##Live Site
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+👉 
 
-## Expanding the ESLint configuration
+## Admin Access
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Email:** piqamityh@mailinator.com 
+- **Password:** Rased%%55
+
+---
+
+##  Features
+
+1. **Authentication System**: Register and login with role-based access (Admin, Donor, Volunteer).
+2. **User Profile Management**: Editable profile (excluding email) with image upload via ImgBB.
+3. **Create Donation Requests**: Donors can create, update, and delete their own blood donation requests.
+4. **Donation Request Management**:
+   - Admins manage all requests.
+   - Volunteers can update status only.
+   - Status control: pending → inprogress → done/canceled.
+5. **Blogs (Content Management)**:
+   - Admins/Volunteers can add/edit blogs.
+   - Admins can publish/unpublish/delete.
+   - Public Blog page with View More modal.
+6. **Donor Search Page**: Search by blood group, district, and upazila. Results shown after submission.
+7. **Funding Page**:
+   - Users can fund the organization.
+   - Stripe payment integrated.
+   - Admin dashboard shows total funds.
+8. **JWT & Protected Routes**: Dashboard and sensitive APIs are secured using JWT.
+9. **Fully Responsive UI**: Optimized for mobile, tablet, and desktop.
+10. **Notification & Alerts**: All CRUD actions use toast/sweetalert instead of browser alerts.
+
+---
+
+##  Technologies
+
+- **Frontend**: React.js, Tailwind CSS, React Router DOM, Axios, Jodit-React, TanStack Query, Framer Motion
+- **Backend**: Node.js, Express.js, MongoDB, Firebase Auth, JWT
+- **Payments**: Stripe
+- **Image Hosting**: ImgBB
+- **Extra**: AOS Animations, Responsive Charts (optional)
+
+---
+
+
