@@ -19,6 +19,9 @@ import DonationDetails from "../pages/DonationDetails";
 import EditDonationRequest from "../pages/EditDonationRequest";
 import MyDonationRequests from "../pages/MyDonationRequests";
 import AllBloodDonationRequests from "../pages/AllBloodDonationRequests";
+import ContentManagementPage from "../pages/ContentManagementPage";
+import AddBlogPage from "../pages/AddBlogPage";
+
 
 const mainRoutes = createBrowserRouter([
   {
@@ -76,6 +79,14 @@ const mainRoutes = createBrowserRouter([
             path: "profile",
             element: <ProfilePage />,
           },
+          {
+  path: "content-management",
+  element: <ContentManagementPage></ContentManagementPage>,
+},
+{
+  path: "content-management/add-blog",
+  element: <AddBlogPage></AddBlogPage>,
+},
           {
   path: "edit-donation/:id",
   element: <EditDonationRequest></EditDonationRequest>,
