@@ -4,6 +4,7 @@ import JoditEditor from "jodit-react";
 
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useNavigate } from "react-router";
+import axios from "axios";
 
 export default function AddBlogPage() {
   const [title, setTitle] = useState("");
@@ -15,10 +16,12 @@ export default function AddBlogPage() {
   const handleImageUpload = async (file) => {
     const formData = new FormData();
     formData.append("image", file);
-    const { data } = await axiosSecure.post(
-      `https://api.imgbb.com/1/upload?key=YOUR_IMGBB_API_KEY`,
+
+    const { data } = await axios.post(
+      `https://api.imgbb.com/1/upload?key=4a60f895140cf46487e8e313affd0ebb`,
       formData
     );
+
     return data.data.url;
   };
 
@@ -51,12 +54,16 @@ export default function AddBlogPage() {
         <input
           type="file"
           accept="image/*"
-          onChange={(e) => setThumbnail(e.target.files[0])}
+          onChange={(e) => {
+            const file = e.target.files[0];
+            if (file) setThumbnail(file);
+          }}
           className="w-full"
         />
+
         <JoditEditor value={content} onChange={setContent} />
         <button
-          className="bg-blue-600 text-white px-6 py-2 rounded"
+          className="bg-red-600 text-white px-6 py-2 rounded"
           type="submit"
         >
           Create

@@ -51,7 +51,7 @@ export default function AllUsers() {
             onClick={() => setFilter(s)}
             className={`px-4 py-2 rounded-full text-sm border font-medium ${
               filter === s
-                ? "bg-blue-600 text-white"
+                ? "bg-red-600 text-white"
                 : "bg-gray-100 text-gray-700"
             }`}
           >
@@ -145,7 +145,7 @@ export default function AllUsers() {
             onClick={() => setPage(i + 1)}
             className={`px-3 py-1 rounded ${
               page === i + 1
-                ? "bg-blue-600 text-white"
+                ? "bg-red-600 text-white"
                 : "bg-gray-200 text-gray-700"
             }`}
           >

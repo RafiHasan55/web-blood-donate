@@ -8,8 +8,8 @@ const DashboardLayout = () => {
     <div className="min-h-screen flex bg-gray-100">
       {/* Sidebar */}
       <aside className="w-64 bg-white shadow-md p-5 hidden md:block">
-        <div className="text-2xl font-bold mb-10 text-center text-blue-600">
-          BookSwap Hub
+        <div className="text-2xl font-bold mb-10 text-center text-red-600">
+          Dashboard
         </div>
         <DashboardSidebar />
       </aside>

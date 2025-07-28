@@ -85,7 +85,7 @@ const handleStatusChange = async (id, newStatus) => {
 )}
                       <Link
                         to={`/dashboard/edit-donation/${donation._id}`}
-                        className="text-blue-600 underline"
+                        className="text-red-600 underline"
                       >
                         Edit
                       </Link>
@@ -111,7 +111,7 @@ const handleStatusChange = async (id, newStatus) => {
           <div className="text-right mt-4">
             <Link
               to="/dashboard/my-requests"
-              className="text-blue-600 font-medium hover:underline"
+              className="text-red-600 font-medium hover:underline"
             >
               View My All Requests →
             </Link>

@@ -20,7 +20,7 @@ export default function MyBooks() {
   return (
     <div className="bg-white p-6 rounded-xl shadow-md">
       <div className="flex justify-between">
-        <h2 className="text-2xl font-semibold mb-4 text-blue-600">
+        <h2 className="text-2xl font-semibold mb-4 text-red-600">
           📚 My Books
         </h2>
         <select value={filter} onChange={(e) => setFilter(e.target.value)}>
@@ -54,11 +54,11 @@ export default function MyBooks() {
                 </td>
                 <td className="p-3">{book.title}</td>
                 <td className="p-3">{book.author}</td>
-                <td className="p-3 capitalize text-blue-600">{book.status}</td>
+                <td className="p-3 capitalize text-red-600">{book.status}</td>
                 <td className="p-3 flex gap-3 items-center">
                   <button
                     title="View"
-                    className="text-blue-500 hover:text-blue-700"
+                    className="text-red-600 hover:text-blue-700"
                     onClick={() => (window.location.href = `/book/${book._id}`)}
                   ></button>
                   <button

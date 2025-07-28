@@ -8,7 +8,7 @@ export default function DashboardSidebar() {
       className={({ isActive }) =>
         `flex items-center gap-3 px-4 py-2 rounded-lg font-medium ${
           isActive
-            ? "bg-blue-100 text-blue-600"
+            ? "bg-blue-100 text-red-600"
             : "text-gray-700 hover:bg-gray-200"
         }`
       }
@@ -24,18 +24,23 @@ export default function DashboardSidebar() {
   const isAdmin = role === "admin";
 
   return (
-    <nav className="flex flex-col gap-4">
-      <NavItem to="/dashboard" label={`${role?.charAt(0).toUpperCase() + role?.slice(1)} Dashboard Home`} />
+  <nav className="flex flex-col gap-4">
+    <NavItem to="/dashboard" label={`${role?.charAt(0).toUpperCase() + role?.slice(1)} Dashboard Home`} />
 
-      {isAdmin && (
-        <NavItem to="/dashboard/all-users" label="All Users" />
-      )}
+    {isAdmin && (
+      <NavItem to="/dashboard/all-users" label="All Users" />
+    )}
 
-      <NavItem to="/dashboard/create-donation-request" label="Donation Request" />
-      <NavItem to="/dashboard/my-books" label="My Books" />
+    <NavItem to="/dashboard/create-donation-request" label="Donation Request" />
+    <NavItem to="/dashboard/my-books" label="My Books" />
+
+    {isAdmin && (
       <NavItem to="/dashboard/content-management" label="Content Management" />
-      <NavItem to="/dashboard/my-requests" label="My Requests" />
-      <NavItem to="/dashboard/profile" label="Profile" />
-    </nav>
-  );
+    )}
+
+    <NavItem to="/dashboard/my-requests" label="My Requests" />
+    <NavItem to="/dashboard/profile" label="Profile" />
+  </nav>
+);
+
 }

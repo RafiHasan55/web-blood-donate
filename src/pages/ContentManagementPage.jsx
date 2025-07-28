@@ -35,7 +35,7 @@ export default function ContentManagementPage() {
         <h2 className="text-2xl font-bold">Blog Management</h2>
         <Link
           to="/dashboard/content-management/add-blog"
-          className="bg-blue-600 text-white px-4 py-2 rounded"
+          className="bg-red-600 text-white px-4 py-2 rounded"
         >
           Add Blog
         </Link>

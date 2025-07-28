@@ -27,7 +27,7 @@ const AdminDashboard = () => {
 
   return (
     <div className="p-6 space-y-6">
-      <h2 className="text-3xl font-bold text-blue-600">
+      <h2 className="text-3xl font-bold text-red-600">
         👋 Welcome, {user?.displayName || "Admin"}
       </h2>
 
@@ -74,7 +74,7 @@ const AdminDashboard = () => {
                     <td className="p-2 capitalize">{req.status}</td>
                     <td className="p-2">
                       <button
-                        className="text-blue-600 underline"
+                        className="text-red-600 underline"
                         onClick={() =>
                           (window.location.href = `/dashboard/request/${req._id}`)
                         }
@@ -101,7 +101,7 @@ const AdminDashboard = () => {
 
 const StatCard = ({ icon, title, value }) => (
   <div className="bg-white shadow-md rounded-xl p-6 flex items-center gap-4">
-    <div className="bg-blue-100 text-blue-600 p-3 rounded-full">{icon}</div>
+    <div className="bg-blue-100 text-red-600 p-3 rounded-full">{icon}</div>
     <div>
       <p className="text-lg font-semibold">{value}</p>
       <p className="text-sm text-gray-500">{title}</p>

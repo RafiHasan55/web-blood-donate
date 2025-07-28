@@ -103,7 +103,7 @@ const handleStatusChange = async (id, newStatus) => {
 )}
                       <Link
                         to={`/dashboard/edit-donation/${donation._id}`}
-                        className="text-blue-600 underline"
+                        className="text-red-600 underline"
                       >
                         Edit
                       </Link>

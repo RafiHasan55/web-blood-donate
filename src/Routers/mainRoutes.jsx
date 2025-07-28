@@ -22,7 +22,6 @@ import AllBloodDonationRequests from "../pages/AllBloodDonationRequests";
 import ContentManagementPage from "../pages/ContentManagementPage";
 import AddBlogPage from "../pages/AddBlogPage";
 
-
 const mainRoutes = createBrowserRouter([
   {
     path: "/",
@@ -80,25 +79,25 @@ const mainRoutes = createBrowserRouter([
             element: <ProfilePage />,
           },
           {
-  path: "content-management",
-  element: <ContentManagementPage></ContentManagementPage>,
-},
-{
-  path: "content-management/add-blog",
-  element: <AddBlogPage></AddBlogPage>,
-},
+            path: "content-management",
+            element: <ContentManagementPage></ContentManagementPage>,
+          },
           {
-  path: "edit-donation/:id",
-  element: <EditDonationRequest></EditDonationRequest>,
-},
-{
-  path: "all-blood-donation-request",
-  element: <AllBloodDonationRequests />,
-},
-{
-  path: "donation-details/:id",
-  element: <DonationDetails></DonationDetails>,
-}
+            path: "content-management/add-blog",
+            element: <AddBlogPage></AddBlogPage>,
+          },
+          {
+            path: "edit-donation/:id",
+            element: <EditDonationRequest></EditDonationRequest>,
+          },
+          {
+            path: "all-blood-donation-request",
+            element: <AllBloodDonationRequests />,
+          },
+          {
+            path: "donation-details/:id",
+            element: <DonationDetails></DonationDetails>,
+          },
         ],
       },
       {

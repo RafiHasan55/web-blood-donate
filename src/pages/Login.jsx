@@ -85,7 +85,7 @@ const Login = () => {
 <p>
   Create a new account{" "}
   <Link to="/registration">
-    <span className="text-blue-500 hover:underline">Register</span>
+    <span className="text-red-600 hover:underline">Register</span>
   </Link>
 </p>
 
