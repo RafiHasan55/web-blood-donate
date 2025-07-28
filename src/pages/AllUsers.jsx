@@ -39,15 +39,23 @@ export default function AllUsers() {
   // useEffect(() => {
   //   axiosSecure.get("/get-users").then(({ data }) => setUsers(data));
   // }, []);
-if(isLoading){
-  return <h1 className="text-5xl text-red-600">Loading.............</h1>
-}
+  if (isLoading) {
+    return <h1 className="text-5xl text-red-600">Loading.............</h1>;
+  }
   return (
-    <div>
-      All Users
-      <div>
+    <div className="px-4 py-6">
+      <h2 className="text-2xl font-bold text-gray-800 mb-6">All Users</h2>
+
+      {isLoading && (
+        <h1 className="text-5xl text-red-600">Loading.............</h1>
+      )}
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {users.map((user) => (
-          <div className="flex flex-col md:flex-row items-start md:items-center gap-4 p-4 bg-white rounded-2xl shadow-md border border-gray-200 w-full max-w-xl">
+          <div
+            key={user.email}
+            className="flex flex-col md:flex-row items-start md:items-center gap-4 p-4 bg-white rounded-2xl shadow-md border border-gray-200"
+          >
             <div className="flex-1">
               <div className="text-gray-700 font-medium">
                 Name: <span className="text-blue-600">{user.email}</span>
@@ -57,6 +65,7 @@ if(isLoading){
                 <span className="text-green-600 capitalize">{user.role}</span>
               </div>
             </div>
+
             <div className="flex flex-col gap-1">
               <label
                 htmlFor="role"
