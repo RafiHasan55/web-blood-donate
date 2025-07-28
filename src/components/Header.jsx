@@ -3,12 +3,13 @@ import { CgMenuMotion } from "react-icons/cg";
 import { RiMenuAddLine } from "react-icons/ri";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../providers/AuthProvider";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
+import { FaCaretDown } from "react-icons/fa";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isPageLoad, setisPageLoad] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleLogout = () => {
     logOut()
@@ -21,52 +22,66 @@ const Header = () => {
   };
 
   const menu = [
-    {
-      name: "Home",
-      path: "/",
-    },
-    {
-      name: "Available Books",
-      path: "/available-books",
-    },
-    {
-      name: "Our Blogs",
-      path: "/blog",
-    },
-    {
-      name: "Dashboard",
-      path: "/dashboard",
-    },
+    { name: "Home", path: "/" },
+    { name: "Our Blogs", path: "/blog" },
+    { name: "Donation Requests", path: "/available-books" },
   ];
+
   return (
-    <nav className="overflow-x-clip">
+    <nav className="bg-white shadow">
       {user && (
         <p className="text-center text-white bg-black py-2 bg-opacity-90">
-          Welcome Mr. {user?.displayName} ❤️‍🔥❤️‍🔥. Now You Can Watch All the
-          Recipies🍉🍉
+          Welcome {user?.displayName} 🩸❤️ Thank you for being part of our
+          lifesaving mission.
         </p>
       )}
-      <div className="text-center bg-slate-400"></div>
+
       <div className="w-11/12 mx-auto py-5 flex justify-between items-center relative">
-        <Link to="/" className="logo">
-          <span className="text-xl font-bold text-stone-700">
-            Auth 🍳 Template
-          </span>
+        {/* Logo */}
+        <Link to="/" className="text-xl font-bold text-stone-700">
+          Blood 🩸 Unity
         </Link>
 
-        {/* menu-lg start */}
-        <ul className="hidden lg:flex items-center gap-5 ">
+        {/* Desktop Menu */}
+        <ul className="hidden lg:flex items-center gap-6">
           {menu.map((item) => (
-            <NavLink key={item.path} to={item.path}>
+            <NavLink
+              key={item.path}
+              to={item.path}
+              className="hover:text-red-600"
+            >
               {item.name}
             </NavLink>
           ))}
-          {user && user?.email ? (
-            <>
-              <button className="cursor-pointer" onClick={handleLogout}>
-                Logout
-              </button>
-            </>
+
+          {/* Avatar Dropdown */}
+          {user ? (
+            <div className="relative">
+              <div
+                className="flex items-center gap-2 cursor-pointer"
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              >
+                <img
+                  src={user?.photoURL || "https://i.ibb.co/2P5zz1y/avatar.png"}
+                  alt="avatar"
+                  className="w-10 h-10 rounded-full border"
+                />
+                <FaCaretDown className="text-gray-600" />
+              </div>
+              {isDropdownOpen && (
+                <ul className="absolute right-0 mt-2 bg-white border shadow-md w-40 rounded-md z-50 text-sm">
+                  <li className="px-4 py-2 hover:bg-gray-100">
+                    <Link to="/dashboard">Dashboard</Link>
+                  </li>
+                  <li
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </li>
+                </ul>
+              )}
+            </div>
           ) : (
             <>
               <NavLink to="/login">Login</NavLink>
@@ -75,59 +90,56 @@ const Header = () => {
           )}
         </ul>
 
-        <div className="lg:hidden ">
+        {/* Mobile Menu */}
+        <div className="lg:hidden">
           {!isMenuOpen ? (
             <RiMenuAddLine
-              onClick={() => {
-                setIsMenuOpen(true);
-                setisPageLoad(true);
-              }}
+              onClick={() => setIsMenuOpen(true)}
               className="text-2xl cursor-pointer"
-            ></RiMenuAddLine>
+            />
           ) : (
             <CgMenuMotion
               onClick={() => setIsMenuOpen(false)}
               className="text-2xl cursor-pointer"
-            ></CgMenuMotion>
+            />
           )}
 
-          {
-            <ul
-              className={`flex animate__animated bg-white flex-col lg:hidden gap-5 absolute z-50 bg-opacity-70 w-full top-14  left-0 ${
-                isMenuOpen
-                  ? "animate__fadeInRight "
-                  : isPageLoad
-                  ? "animate__fadeOutRight flex "
-                  : "hidden"
-              } `}
-            >
-              {menu.map((item) => (
-                <NavLink
-                  className="border-b-2 hover:border-orange-500 transition duration-200
-                   "
-                  key={item.path}
-                  to={item.path}
-                >
-                  {item.name}
+          <ul
+            className={`absolute bg-white z-50 top-16 left-0 w-full py-4 flex flex-col gap-4 shadow-md ${
+              isMenuOpen ? "block" : "hidden"
+            }`}
+          >
+            {menu.map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                className="px-6 hover:text-red-600"
+              >
+                {item.name}
+              </NavLink>
+            ))}
+            {user ? (
+              <>
+                <NavLink to="/dashboard" className="px-6">
+                  Dashboard
                 </NavLink>
-              ))}
-              {user && user?.email ? (
-                <>
-                  <button className="cursor-pointer" onClick={handleLogout}>
-                    Logout
-                  </button>
-                </>
-              ) : (
-                <>
-                  <NavLink to="/login">Login</NavLink>
-                  <NavLink to="/registration">Register</NavLink>
-                </>
-              )}
-            </ul>
-          }
+                <button onClick={handleLogout} className="px-6 text-left">
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <NavLink to="/login" className="px-6">
+                  Login
+                </NavLink>
+                <NavLink to="/registration" className="px-6">
+                  Register
+                </NavLink>
+              </>
+            )}
+          </ul>
         </div>
       </div>
-      {/* <ToastContainer /> */}
     </nav>
   );
 };

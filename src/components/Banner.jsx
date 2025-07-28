@@ -3,11 +3,14 @@ import Lottie from "lottie-react";
 import DistrictSelect from "../pages/DistrictSelect";
 import UpazilaSelect from "../pages/UpazilaSelect";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const Banner = () => {
   const [bloodGroup, setBloodGroup] = useState("");
   const [districtId, setDistrictId] = useState("");
   const [upazila, setUpazila] = useState("");
+  const navigate = useNavigate();
+
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -28,12 +31,12 @@ const Banner = () => {
             effective.
           </p>
           <div className="flex gap-4 justify-center md:justify-start">
-            <button className="bg-red-600 text-white px-6 py-2 rounded shadow hover:bg-red-700">
-              Join Now
-            </button>
-            <button className="border border-red-600 text-red-600 px-6 py-2 rounded hover:bg-red-50">
-              See More
-            </button>
+            <button onClick={() => navigate("/registration")} className="bg-red-600 text-white px-6 py-2 rounded">
+  Join as a Donor
+</button>
+<button onClick={() => navigate("/search")} className="border border-red-600 text-red-600 px-6 py-2 rounded">
+  Search Donors
+</button>
           </div>
         </div>
 

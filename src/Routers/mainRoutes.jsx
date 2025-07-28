@@ -22,6 +22,7 @@ import AllBloodDonationRequests from "../pages/AllBloodDonationRequests";
 import ContentManagementPage from "../pages/ContentManagementPage";
 import AddBlogPage from "../pages/AddBlogPage";
 import PublicBlogPage from "../pages/PublicBlogPage";
+import SearchDonorPage from "../pages/SearchDonorPage";
 
 const mainRoutes = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const mainRoutes = createBrowserRouter([
       {
   path: "/blog",
   element: <PublicBlogPage />,
+},
+{
+  path: "/search",
+  element: <SearchDonorPage />,
 },
 
       {
