@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import DistrictSelect from "./DistrictSelect";
 import UpazilaSelect from "./UpazilaSelect";
+import { toast } from "react-toastify";
 
 const ProfilePage = () => {
   const axiosSecure = useAxiosSecure();
@@ -9,7 +10,7 @@ const ProfilePage = () => {
   const [editMode, setEditMode] = useState(false);
   const [formData, setFormData] = useState({});
 
-  console.log(formData)
+  console.log(formData);
 
   useEffect(() => {
     axiosSecure
@@ -28,12 +29,25 @@ const ProfilePage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const { name, photo, blood, district_id, upazila_id, password } = formData;
+    const payload = {
+      name,
+      photo,
+      blood,
+      district_id,
+      upazila_id,
+      ...(password && { password }),
+    };
+
     try {
-      await axiosSecure.patch("/user/profile/update", formData);
-      setProfile(formData);
+      await axiosSecure.patch("/user/profile", payload);
+      toast.success("Profile updated successfully!");
+      setProfile((prev) => ({ ...prev, ...payload }));
       setEditMode(false);
     } catch (error) {
       console.error("Update failed:", error);
+      toast.error("Profile update failed");
     }
   };
 
@@ -49,11 +63,11 @@ const ProfilePage = () => {
     <div className="max-w-2xl mx-auto mt-10 bg-white p-8 rounded-2xl shadow-lg border">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-3xl font-bold text-gray-800">
-        <div className="avatar">
-  <div className="ring-primary ring-offset-base-100 w-12 rounded-full ring-2 ring-offset-2">
-    <img src={formData.photo} />
-  </div>
-</div>
+          <div className="avatar">
+            <div className="ring-primary ring-offset-base-100 w-12 rounded-full ring-2 ring-offset-2">
+              <img src={formData.photo} />
+            </div>
+          </div>
           <span className="ml-2">Profile Dashboard</span>
         </h2>
         {!editMode && (
