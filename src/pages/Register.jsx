@@ -21,8 +21,10 @@ const provider = new GoogleAuthProvider();
 
 const Register = () => {
   const [districtId, setDistrictId] = useState("");
-
   const [errorMessage, setErrorMessage] = useState("");
+
+  const [district, setDistrict] = useState("");
+  const [upazila, setUpazila] = useState("");
 
   const navigate = useNavigate();
 
@@ -35,8 +37,9 @@ const Register = () => {
       photo: form.photo.value.trim(),
       blood: form.blood.value,
       password: form.password.value,
-      repassword: form.repassword.value
-
+      repassword: form.repassword.value,
+      district,
+      upazila,
     };
     console.log(userData);
 
@@ -52,12 +55,11 @@ const Register = () => {
       return;
     }
 
-     // Password match check
+    // Password match check
     if (userData.password !== userData.repassword) {
       toast.error("Passwords do not match!");
       return;
     }
-
 
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
     if (!passwordRegex.test(userData.password)) {
@@ -167,8 +169,12 @@ const Register = () => {
                   </select>
                 </div>
 
-                <DistrictSelect onChange={setDistrictId} />
-                <UpazilaSelect selectedDistrictId={districtId} />
+                <DistrictSelect value={district} onChange={setDistrict} />
+                <UpazilaSelect
+                  selectedDistrictId={district}
+                  value={upazila}
+                  onChange={setUpazila}
+                />
 
                 <div className="flex justify-start items-center">
                   <div className="">

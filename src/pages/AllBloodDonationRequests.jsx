@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { Link } from "react-router";
 
-
 export default function AllBloodDonationRequests() {
   const axiosSecure = useAxiosSecure();
   const [requests, setRequests] = useState([]);
@@ -38,7 +37,9 @@ export default function AllBloodDonationRequests() {
 
   const handleStatusChange = async (id, newStatus) => {
     try {
-      await axiosSecure.patch(`/donation-requests/${id}`, { status: newStatus });
+      await axiosSecure.patch(`/donation-requests/${id}`, {
+        status: newStatus,
+      });
       setRequests((prev) =>
         prev.map((d) => (d._id === id ? { ...d, status: newStatus } : d))
       );

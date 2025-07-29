@@ -11,7 +11,6 @@ const Banner = () => {
   const [upazila, setUpazila] = useState("");
   const navigate = useNavigate();
 
-
   const handleSearch = (e) => {
     e.preventDefault();
     // trigger search logic here
@@ -31,12 +30,18 @@ const Banner = () => {
             effective.
           </p>
           <div className="flex gap-4 justify-center md:justify-start">
-            <button onClick={() => navigate("/registration")} className="bg-red-600 text-white px-6 py-2 rounded">
-  Join as a Donor
-</button>
-<button onClick={() => navigate("/search")} className="border border-red-600 text-red-600 px-6 py-2 rounded">
-  Search Donors
-</button>
+            <button
+              onClick={() => navigate("/registration")}
+              className="bg-red-600 text-white px-6 py-2 rounded"
+            >
+              Join as a Donor
+            </button>
+            <button
+              onClick={() => navigate("/search")}
+              className="border border-red-600 text-red-600 px-6 py-2 rounded"
+            >
+              Search Donors
+            </button>
           </div>
         </div>
 

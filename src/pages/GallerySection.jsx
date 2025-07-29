@@ -15,7 +15,10 @@ const GallerySection = () => {
         <h2 className="text-4xl font-bold text-red-600 mb-10">Our Gallery</h2>
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
           {images.map((src, idx) => (
-            <div key={idx} className="overflow-hidden rounded shadow hover:shadow-xl">
+            <div
+              key={idx}
+              className="overflow-hidden rounded shadow hover:shadow-xl"
+            >
               <img
                 src={src}
                 alt={`Gallery ${idx + 1}`}

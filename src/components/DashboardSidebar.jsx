@@ -22,25 +22,40 @@ export default function DashboardSidebar() {
   if (loading) return <h1>Loading...</h1>;
 
   const isAdmin = role === "admin";
+  const isVolunteer = role === "volunteer";
 
   return (
-  <nav className="flex flex-col gap-4">
-    <NavItem to="/dashboard" label={`${role?.charAt(0).toUpperCase() + role?.slice(1)} Dashboard Home`} />
+    <nav className="flex flex-col gap-4">
+      <NavItem
+        to="/dashboard"
+        label={`${
+          role?.charAt(0).toUpperCase() + role?.slice(1)
+        } Dashboard Home`}
+      />
 
-    {isAdmin && (
-      <NavItem to="/dashboard/all-users" label="All Users" />
-    )}
+      {isAdmin && <NavItem to="/dashboard/all-users" label="All Users" />}
 
-    <NavItem to="/dashboard/create-donation-request" label="Donation Request" />
-    <NavItem to="/dashboard/my-books" label="My Books" />
+      <NavItem
+        to="/dashboard/create-donation-request"
+        label="Donation Request"
+      />
 
-    {isAdmin && (
-      <NavItem to="/dashboard/content-management" label="Content Management" />
-    )}
+      {(isAdmin || isVolunteer) && (
+        <NavItem
+          to="/dashboard/content-management"
+          label="Content Management"
+        />
+      )}
+      <NavItem to="/dashboard/my-requests" label="My Requests" />
 
-    <NavItem to="/dashboard/my-requests" label="My Requests" />
-    <NavItem to="/dashboard/profile" label="Profile" />
-  </nav>
-);
+      {(isAdmin || isVolunteer) && (
+        <NavItem
+          to="/dashboard/all-blood-donation-request"
+          label="All Blood Requests"
+        />
+      )}
 
+      <NavItem to="/dashboard/profile" label="Profile" />
+    </nav>
+  );
 }

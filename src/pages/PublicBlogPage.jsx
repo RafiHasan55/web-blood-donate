@@ -43,7 +43,10 @@ export default function PublicBlogPage() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {filteredBlogs.map((blog) => (
-            <div key={blog._id} className="bg-white shadow rounded-xl overflow-hidden">
+            <div
+              key={blog._id}
+              className="bg-white shadow rounded-xl overflow-hidden"
+            >
               <img
                 src={blog.thumbnail}
                 alt={blog.title}

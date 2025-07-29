@@ -51,50 +51,6 @@ const AdminDashboard = () => {
       </div>
 
       {/* Latest Book Requests Table */}
-      <div className="bg-white shadow-md rounded-xl p-5">
-        <h3 className="text-xl font-semibold mb-4">📦 Latest Book Requests</h3>
-        <div className="overflow-x-auto">
-          {/* <table className="min-w-full text-sm text-left border">
-            <thead className="bg-gray-100">
-              <tr>
-                <th className="p-2">#</th>
-                <th className="p-2">Requester</th>
-                <th className="p-2">Book</th>
-                <th className="p-2">Status</th>
-                <th className="p-2">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {latestRequests.length > 0 ? (
-                latestRequests.map((req, i) => (
-                  <tr key={req._id} className="border-t hover:bg-gray-50">
-                    <td className="p-2">{i + 1}</td>
-                    <td className="p-2">{req.requesterName}</td>
-                    <td className="p-2">{req.bookTitle}</td>
-                    <td className="p-2 capitalize">{req.status}</td>
-                    <td className="p-2">
-                      <button
-                        className="text-red-600 underline"
-                        onClick={() =>
-                          (window.location.href = `/dashboard/request/${req._id}`)
-                        }
-                      >
-                        View
-                      </button>
-                    </td>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan={5} className="text-center p-4 text-gray-400">
-                    No recent requests
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table> */}
-        </div>
-      </div>
     </div>
   );
 };

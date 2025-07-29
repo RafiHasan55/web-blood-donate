@@ -1,4 +1,3 @@
-
 import { FaUserPlus, FaBell, FaTint, FaHeart } from "react-icons/fa";
 
 const HowItWorks = () => {
@@ -31,8 +30,13 @@ const HowItWorks = () => {
         <h2 className="text-4xl font-bold text-red-600 mb-12">How It Works</h2>
         <div className="grid gap-8 md:grid-cols-4">
           {steps.map((step, index) => (
-            <div key={index} className="bg-white p-6 rounded shadow hover:shadow-lg transition">
-              <div className="mb-4 text-center justify-center items-center flex">{step.icon}</div>
+            <div
+              key={index}
+              className="bg-white p-6 rounded shadow hover:shadow-lg transition"
+            >
+              <div className="mb-4 text-center justify-center items-center flex">
+                {step.icon}
+              </div>
               <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
               <p className="text-sm text-gray-600">{step.desc}</p>
             </div>

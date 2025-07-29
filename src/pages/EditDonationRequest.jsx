@@ -50,7 +50,10 @@ export default function EditDonationRequest() {
         ✏️ Edit Donation Request
       </h2>
 
-      <form onSubmit={handleUpdate} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <form
+        onSubmit={handleUpdate}
+        className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+      >
         <input
           type="text"
           name="recipient_name"
@@ -63,14 +66,20 @@ export default function EditDonationRequest() {
         <DistrictSelect
           selected={formData.district_id}
           onChange={(id) =>
-            setFormData((prev) => ({ ...prev, district_id: id, upazila_id: "" }))
+            setFormData((prev) => ({
+              ...prev,
+              district_id: id,
+              upazila_id: "",
+            }))
           }
         />
 
         <UpazilaSelect
           selectedDistrictId={formData.district_id}
           selectedUpazilaId={formData.upazila_id}
-          onChange={(id) => setFormData((prev) => ({ ...prev, upazila_id: id }))}
+          onChange={(id) =>
+            setFormData((prev) => ({ ...prev, upazila_id: id }))
+          }
         />
 
         <input
@@ -99,7 +108,9 @@ export default function EditDonationRequest() {
         >
           <option value="">Select Blood Group</option>
           {["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"].map((g) => (
-            <option key={g} value={g}>{g}</option>
+            <option key={g} value={g}>
+              {g}
+            </option>
           ))}
         </select>
 

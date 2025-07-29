@@ -22,11 +22,11 @@ const Login = () => {
     const pass = form.pass.value;
 
     signIn(email, pass)
-      .then((res) => {        
-        toast.success('Login Successfully');
+      .then((res) => {
+        toast.success("Login Successfully");
         form.reset();
       })
-        .catch((error) => {
+      .catch((error) => {
         toast.error("Logout failed: " + error.message);
       });
   };
@@ -82,13 +82,14 @@ const Login = () => {
                   value="Login Now"
                   className="btn cursor-pointer"
                 />
-<p>
-  Create a new account{" "}
-  <Link to="/registration">
-    <span className="text-red-600 hover:underline">Register</span>
-  </Link>
-</p>
-
+                <p>
+                  Create a new account{" "}
+                  <Link to="/registration">
+                    <span className="text-red-600 hover:underline">
+                      Register
+                    </span>
+                  </Link>
+                </p>
               </form>
             </div>
             <Social></Social>
@@ -98,7 +99,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-   {/* <ToastContainer /> */}
+      {/* <ToastContainer /> */}
     </div>
   );
 };

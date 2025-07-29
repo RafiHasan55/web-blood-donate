@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const UpazilaSelect = ({ selectedDistrictId }) => {
+const UpazilaSelect = ({ selectedDistrictId, value, onChange }) => {
   const [upazilas, setUpazilas] = useState([]);
   const [filteredUpazilas, setFilteredUpazilas] = useState([]);
 
@@ -37,10 +37,11 @@ const UpazilaSelect = ({ selectedDistrictId }) => {
         <span className="text-2xl font-semibold text-slate-600 mr-2">🏞️</span>
       </div>
       <select
-        defaultValue=""
+        name="upazila"
+        value={value}
+        onChange={(e) => onChange && onChange(e.target.value)}
         disabled={!selectedDistrictId}
         className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-orange-400 transition-all duration-200 disabled:opacity-50"
-        name="upazila"
         required
       >
         <option disabled value="">
@@ -55,5 +56,4 @@ const UpazilaSelect = ({ selectedDistrictId }) => {
     </div>
   );
 };
-
 export default UpazilaSelect;

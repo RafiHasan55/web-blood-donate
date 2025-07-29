@@ -5,12 +5,16 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white pt-12 pb-6 mt-12">
       <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
-
         {/* Logo & Tagline */}
         <div>
-          <h2 className="text-2xl font-bold text-red-500 mb-2">Blood 🩸 Unity</h2>
+          <h2 className="text-2xl font-bold text-red-500 mb-2">
+            Blood 🩸 Unity
+          </h2>
           <p className="text-sm text-gray-400">
-        Together, we build a community of lifesavers. Every drop of blood you donate carries the power to save a life, bring hope to a family, and make the world a little better. Join us in this noble journey and become someone’s hero today.
+            Together, we build a community of lifesavers. Every drop of blood
+            you donate carries the power to save a life, bring hope to a family,
+            and make the world a little better. Join us in this noble journey
+            and become someone’s hero today.
           </p>
         </div>
 
@@ -18,10 +22,26 @@ const Footer = () => {
         <div>
           <h3 className="text-lg font-semibold mb-3">Quick Links</h3>
           <ul className="space-y-2 text-gray-300">
-            <li><Link to="/" className="hover:text-red-400">Home</Link></li>
-            <li><Link to="/blog" className="hover:text-red-400">Blog</Link></li>
-            <li><Link to="/search" className="hover:text-red-400">Search Donors</Link></li>
-            <li><Link to="/dashboard" className="hover:text-red-400">Dashboard</Link></li>
+            <li>
+              <Link to="/" className="hover:text-red-400">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/blog" className="hover:text-red-400">
+                Blog
+              </Link>
+            </li>
+            <li>
+              <Link to="/search" className="hover:text-red-400">
+                Search Donors
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard" className="hover:text-red-400">
+                Dashboard
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -38,7 +58,9 @@ const Footer = () => {
         {/* Newsletter (optional) */}
         <div>
           <h3 className="text-lg font-semibold mb-3">Subscribe</h3>
-          <p className="text-gray-400 text-sm mb-2">Get updates & alerts directly to your inbox.</p>
+          <p className="text-gray-400 text-sm mb-2">
+            Get updates & alerts directly to your inbox.
+          </p>
           <form className="flex items-center gap-2">
             <input
               type="email"
@@ -62,9 +84,27 @@ const Footer = () => {
             &copy; {new Date().getFullYear()} Blood Unity. All rights reserved.
           </p>
           <div className="flex gap-4 text-gray-400 text-lg">
-            <a target="_blank" href="https://www.facebook.com/mdraseduzzaman.rased0/" className="hover:text-blue-500"><FaFacebook /></a>
-            <a target="_blank" href="https://www.instagram.com/freelancer.rased/" className="hover:text-sky-400"><FaTwitter /></a>
-            <a target="_blank" href="https://twitter.com/freelancerrased" className="hover:text-pink-500"><FaInstagram /></a>
+            <a
+              target="_blank"
+              href="https://www.facebook.com/mdraseduzzaman.rased0/"
+              className="hover:text-blue-500"
+            >
+              <FaFacebook />
+            </a>
+            <a
+              target="_blank"
+              href="https://www.instagram.com/freelancer.rased/"
+              className="hover:text-sky-400"
+            >
+              <FaTwitter />
+            </a>
+            <a
+              target="_blank"
+              href="https://twitter.com/freelancerrased"
+              className="hover:text-pink-500"
+            >
+              <FaInstagram />
+            </a>
           </div>
         </div>
       </div>

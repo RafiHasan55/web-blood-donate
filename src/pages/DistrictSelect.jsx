@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const DistrictSelect = ({ onChange }) => {
+const DistrictSelect = ({ onChange, value }) => {
   const [districts, setDistricts] = useState([]);
 
   useEffect(() => {
@@ -24,6 +24,7 @@ const DistrictSelect = ({ onChange }) => {
       </div>
       <select
         defaultValue=""
+        value={value}
         onChange={(e) => onChange && onChange(e.target.value)} // Pass district.id
         className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-orange-400 transition-all duration-200"
         name="district"

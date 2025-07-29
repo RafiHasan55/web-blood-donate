@@ -2,7 +2,6 @@ import { useState } from "react";
 import DistrictSelect from "./DistrictSelect";
 import UpazilaSelect from "./UpazilaSelect";
 
-
 export default function SearchDonorPage() {
   const [bloodGroup, setBloodGroup] = useState("");
   const [districtId, setDistrictId] = useState("");
@@ -78,7 +77,9 @@ export default function SearchDonorPage() {
               <div>
                 <h4 className="text-xl font-semibold">{donor.name}</h4>
                 <p>Blood Group: {donor.bloodGroup}</p>
-                <p>Location: {donor.district}, {donor.upazila}</p>
+                <p>
+                  Location: {donor.district}, {donor.upazila}
+                </p>
               </div>
               <div className="mt-3 md:mt-0">
                 <p className="font-medium">📞 {donor.phone}</p>

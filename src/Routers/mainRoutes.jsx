@@ -2,9 +2,9 @@ import axios from "axios";
 import { createBrowserRouter } from "react-router";
 import DashboardLayout from "../layouts/DashboardLayout";
 import RootLayout from "../layouts/RootLayout";
-import AddBooks from "../pages/CreateDonationRequest";
+
 import AllUsers from "../pages/AllUsers";
-import AvailableBooks from "../pages/AvailableBooks";
+
 import Dashboard from "../pages/Dashboard";
 import DetailsPage from "../pages/DetailsPage";
 import Error from "../pages/Error";
@@ -24,6 +24,8 @@ import AddBlogPage from "../pages/AddBlogPage";
 import PublicBlogPage from "../pages/PublicBlogPage";
 import SearchDonorPage from "../pages/SearchDonorPage";
 import AboutUsPage from "../pages/AboutUsPage";
+import PendingDonationRequests from "../pages/PendingDonationRequests";
+import DonationRequestDetails from "../pages/DonationRequestDetails";
 
 const mainRoutes = createBrowserRouter([
   {
@@ -36,22 +38,31 @@ const mainRoutes = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: "/available-books",
-        element: <AvailableBooks />,
+        path: "/donation-requests",
+        element: <PendingDonationRequests />,
+      },
+
+      {
+        path: "/donation-request/:id",
+        element: (
+          <PrivateRoute>
+            <DonationRequestDetails />
+          </PrivateRoute>
+        ),
+      },
+
+      {
+        path: "/about",
+        element: <AboutUsPage></AboutUsPage>,
       },
       {
-  path: "/about",
-  element: <AboutUsPage></AboutUsPage>
-},
+        path: "/blog",
+        element: <PublicBlogPage />,
+      },
       {
-  path: "/blog",
-  element: <PublicBlogPage />,
-},
-{
-  path: "/search",
-  element: <SearchDonorPage />,
-},
-
+        path: "/search",
+        element: <SearchDonorPage />,
+      },
 
       {
         path: "/details/:bookId",

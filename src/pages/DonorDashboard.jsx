@@ -3,7 +3,6 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import { AuthContext } from "../providers/AuthProvider";
 import { Link } from "react-router";
 
-
 const DonorDashboard = () => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
@@ -18,28 +17,29 @@ const DonorDashboard = () => {
     }
   }, [user, axiosSecure]);
 
-
   const handleDelete = async (id) => {
-  if (confirm("Are you sure you want to delete this request?")) {
-    try {
-      await axiosSecure.delete(`/donation-requests/${id}`);
-      setDonations((prev) => prev.filter((d) => d._id !== id));
-    } catch (err) {
-      console.error("Delete failed:", err);
+    if (confirm("Are you sure you want to delete this request?")) {
+      try {
+        await axiosSecure.delete(`/donation-requests/${id}`);
+        setDonations((prev) => prev.filter((d) => d._id !== id));
+      } catch (err) {
+        console.error("Delete failed:", err);
+      }
     }
-  }
-};
+  };
 
-const handleStatusChange = async (id, newStatus) => {
-  try {
-    await axiosSecure.patch(`/donation-requests/${id}`, { status: newStatus });
-    setDonations((prev) =>
-      prev.map((d) => (d._id === id ? { ...d, status: newStatus } : d))
-    );
-  } catch (err) {
-    console.error("Status update failed:", err);
-  }
-};
+  const handleStatusChange = async (id, newStatus) => {
+    try {
+      await axiosSecure.patch(`/donation-requests/${id}`, {
+        status: newStatus,
+      });
+      setDonations((prev) =>
+        prev.map((d) => (d._id === id ? { ...d, status: newStatus } : d))
+      );
+    } catch (err) {
+      console.error("Status update failed:", err);
+    }
+  };
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
@@ -77,12 +77,26 @@ const handleStatusChange = async (id, newStatus) => {
                     <td className="p-2">{donation.blood_group}</td>
                     <td className="p-2 capitalize">{donation.status}</td>
                     <td className="p-2 space-x-2">
-                 {donation.status === "inprogress" && (
-  <>
-    <button className="text-green-600" onClick={() => handleStatusChange(donation._id, "done")}>Done</button>
-    <button className="text-red-500" onClick={() => handleStatusChange(donation._id, "canceled")}>Cancel</button>
-  </>
-)}
+                      {donation.status === "inprogress" && (
+                        <>
+                          <button
+                            className="text-green-600"
+                            onClick={() =>
+                              handleStatusChange(donation._id, "done")
+                            }
+                          >
+                            Done
+                          </button>
+                          <button
+                            className="text-red-500"
+                            onClick={() =>
+                              handleStatusChange(donation._id, "canceled")
+                            }
+                          >
+                            Cancel
+                          </button>
+                        </>
+                      )}
                       <Link
                         to={`/dashboard/edit-donation/${donation._id}`}
                         className="text-red-600 underline"

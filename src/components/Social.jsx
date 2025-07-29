@@ -11,7 +11,6 @@ const Social = () => {
     googleSignIn()
       .then(() => {
         toast.success("Login Successfully!");
-        
       })
       .catch((err) => {
         toast.error("Login Failed: " + err.message);

@@ -9,11 +9,13 @@ const DashboardLayout = () => {
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-gray-100 relative">
-
       {/* Mobile Top Bar */}
       <div className="flex items-center justify-between md:hidden bg-white shadow px-4 py-3">
         <h2 className="text-xl font-semibold text-red-600">Dashboard</h2>
-        <button onClick={() => setIsOpen(!isOpen)} className="text-2xl text-gray-700">
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="text-2xl text-gray-700"
+        >
           {isOpen ? <IoClose /> : <IoMenu />}
         </button>
       </div>

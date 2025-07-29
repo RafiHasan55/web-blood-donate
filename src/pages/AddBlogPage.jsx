@@ -60,7 +60,7 @@ export default function AddBlogPage() {
             const file = e.target.files[0];
             if (file) setThumbnail(file);
           }}
-          className="w-full"
+          className="w-64 p-2 rounded-sm outline-1"
         />
         <JoditEditor value={content} onChange={setContent} />
 
