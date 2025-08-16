@@ -83,14 +83,17 @@ const Register = () => {
           console.log(" here is the profile ", updateProfile);
           toast.success("Account created successfully!");
 
-          await axios.post("https://for-mission-scic11-server-template.vercel.app/add-user", {
-            name: userData.name,
-            email: userData.email,
-            photo: userData.photo,
-            blood: userData.blood,
-            role: "donor",
-            loginCount: 1,
-          });
+          await axios.post(
+            "https://for-mission-scic11-server-template.vercel.app/add-user",
+            {
+              name: userData.name,
+              email: userData.email,
+              photo: userData.photo,
+              blood: userData.blood,
+              role: "donor",
+              loginCount: 1,
+            }
+          );
 
           form.reset();
           navigate("/login");
@@ -120,7 +123,7 @@ const Register = () => {
                 onSubmit={handleSignUp}
                 className="bg-white p-5 flex flex-col gap-8 backdrop-blur-sm bg-opacity-10 shadow-lg rounded-lg"
               >
-                   <Social></Social>
+                <Social></Social>
                 <div className="flex justify-start items-center">
                   <div className="">
                     <BiUser className="text-3xl text-slate-500"></BiUser>
@@ -228,7 +231,7 @@ const Register = () => {
                 <p className="text-red-500 text-center mt-2">{errorMessage}</p>
               )}
             </div>
-         
+
             <div className="lottie flex-1 flex mx-20 ">
               <Lottie animationData={happy}></Lottie>
             </div>

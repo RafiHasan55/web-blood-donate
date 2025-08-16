@@ -57,7 +57,9 @@ export default function PublicBlogPage() {
               />
               <div className="p-6 flex flex-col justify-between flex-1">
                 <div>
-                  <h3 className="text-xl font-bold mb-3 text-gray-800">{blog.title}</h3>
+                  <h3 className="text-xl font-bold mb-3 text-gray-800">
+                    {blog.title}
+                  </h3>
                   <p className="text-gray-600 mb-5 line-clamp-3">
                     {blog.content.replace(/<[^>]+>/g, "")}
                   </p>

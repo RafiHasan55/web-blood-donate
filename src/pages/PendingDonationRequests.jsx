@@ -1,4 +1,4 @@
-// PendingDonationRequests.jsx
+
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
@@ -8,7 +8,9 @@ export default function PendingDonationRequests() {
 
   useEffect(() => {
     axios
-      .get("https://for-mission-scic11-server-template.vercel.app/public-donation-requests?status=pending")
+      .get(
+        "https://for-mission-scic11-server-template.vercel.app/public-donation-requests?status=pending"
+      )
       .then((res) => setRequests(res.data))
       .catch((err) => console.error("Error loading donation requests", err));
   }, []);

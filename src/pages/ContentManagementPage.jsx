@@ -66,7 +66,7 @@ export default function ContentManagementPage() {
 
       {/* Loader */}
       {loading ? (
-       <Loading></Loading>
+        <Loading></Loading>
       ) : (
         /* Blog Grid */
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

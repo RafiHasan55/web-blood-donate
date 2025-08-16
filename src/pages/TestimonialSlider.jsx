@@ -66,8 +66,12 @@ const TestimonialSlider = () => {
             <p className="text-gray-600 italic mb-4">
               “{testimonials[current].review}”
             </p>
-            <p className="font-bold text-red-600">{testimonials[current].name}</p>
-            <p className="text-gray-400 text-sm">{testimonials[current].username}</p>
+            <p className="font-bold text-red-600">
+              {testimonials[current].name}
+            </p>
+            <p className="text-gray-400 text-sm">
+              {testimonials[current].username}
+            </p>
           </div>
 
           {/* Navigation Dots */}
