@@ -1,10 +1,19 @@
-import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
 const BlogStatusPieChart = ({ blogs = [] }) => {
   // count data safely
   const totalBlogs = blogs.length || 0;
-  const publishedBlogs = blogs.filter((blog) => blog.status === "published").length || 0;
-  const draftBlogs = blogs.filter((blog) => blog.status === "draft").length || 0;
+  const publishedBlogs =
+    blogs.filter((blog) => blog.status === "published").length || 0;
+  const draftBlogs =
+    blogs.filter((blog) => blog.status === "draft").length || 0;
 
   const blogStatusData = [
     { name: "Published Blogs", value: publishedBlogs, color: "#10B981" },

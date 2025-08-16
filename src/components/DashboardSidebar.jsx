@@ -20,9 +20,12 @@ export default function DashboardSidebar() {
 
   const { role, loading } = useRole();
 
-  if (loading) return <div>
-    <Loading></Loading>
-  </div>;
+  if (loading)
+    return (
+      <div>
+        <Loading></Loading>
+      </div>
+    );
 
   const isAdmin = role === "admin";
   const isVolunteer = role === "volunteer";

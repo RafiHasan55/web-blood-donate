@@ -13,7 +13,6 @@ const Banner = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    // trigger search logic here
     console.log({ bloodGroup, districtId, upazila });
   };
 

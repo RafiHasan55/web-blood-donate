@@ -1,4 +1,10 @@
-const StatCard = ({ icon, title, value, bgColor = "bg-blue-100", textColor = "text-red-600" }) => (
+const StatCard = ({
+  icon,
+  title,
+  value,
+  bgColor = "bg-blue-100",
+  textColor = "text-red-600",
+}) => (
   <div className="bg-white shadow-md rounded-xl p-6 flex items-center gap-4 hover:shadow-lg transition-shadow">
     <div className={`${bgColor} ${textColor} p-3 rounded-full`}>{icon}</div>
     <div>

@@ -1,12 +1,18 @@
 import { FaChartLine } from "react-icons/fa";
-import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
 const UserStatusPieChart = ({ userCounts }) => {
-  // userCounts object আসবে card থেকে -> { total, active, blocked }
   const userStatusData = [
-    { name: "Total Users", value: userCounts.total, color: "#3B82F6" },   // Blue
-    { name: "Active Users", value: userCounts.active, color: "#10B981" }, // Green
-    { name: "Blocked Users", value: userCounts.blocked, color: "#EF4444" } // Red
+    { name: "Total Users", value: userCounts.total, color: "#3B82F6" },
+    { name: "Active Users", value: userCounts.active, color: "#10B981" },
+    { name: "Blocked Users", value: userCounts.blocked, color: "#EF4444" },
   ];
 
   return (

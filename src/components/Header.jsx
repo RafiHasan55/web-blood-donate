@@ -56,12 +56,12 @@ const Header = () => {
             </NavLink>
           ))}
 
- {/* Blog link only for not logged in user */}
-  {user && (
-    <NavLink to="/blog" className="hover:text-red-600">
-      Our Blogs
-    </NavLink>
-  )}
+          {/* Blog link only for not logged in user */}
+          {user && (
+            <NavLink to="/blog" className="hover:text-red-600">
+              Our Blogs
+            </NavLink>
+          )}
 
           {/* Avatar Dropdown */}
           {user ? (

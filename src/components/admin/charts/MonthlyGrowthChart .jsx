@@ -1,7 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import React, { useState, useEffect } from "react";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 import { FaCalendarAlt, FaSpinner } from "react-icons/fa";
-import useAxiosSecure from "../../../hooks/useAxiosSecure"; // আপনার path অনুযায়ী adjust করুন
+import useAxiosSecure from "../../../hooks/useAxiosSecure"; 
 
 const MonthlyGrowthChart = () => {
   const [monthlyStatsData, setMonthlyStatsData] = useState([]);
@@ -16,7 +25,7 @@ const MonthlyGrowthChart = () => {
   const fetchMonthlyStats = async () => {
     try {
       setLoading(true);
-      const response = await axiosSecure.get('/admin/monthly-stats'); // আপনার API endpoint
+      const response = await axiosSecure.get("/admin/monthly-stats"); 
       setMonthlyStatsData(response.data);
     } catch (err) {
       setError(err.response?.data?.message || err.message);
@@ -42,7 +51,7 @@ const MonthlyGrowthChart = () => {
       <div className="bg-white shadow-md rounded-xl p-6">
         <div className="text-center text-red-600">
           <p>Error loading chart data: {error}</p>
-          <button 
+          <button
             onClick={fetchMonthlyStats}
             className="mt-2 px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700"
           >
@@ -66,24 +75,24 @@ const MonthlyGrowthChart = () => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line 
-            type="monotone" 
-            dataKey="users" 
-            stroke="#3B82F6" 
+          <Line
+            type="monotone"
+            dataKey="users"
+            stroke="#3B82F6"
             strokeWidth={3}
             name="New Users"
           />
-          <Line 
-            type="monotone" 
-            dataKey="donations" 
-            stroke="#10B981" 
+          <Line
+            type="monotone"
+            dataKey="donations"
+            stroke="#10B981"
             strokeWidth={3}
             name="Donations"
           />
-          <Line 
-            type="monotone" 
-            dataKey="requests" 
-            stroke="#EF4444" 
+          <Line
+            type="monotone"
+            dataKey="requests"
+            stroke="#EF4444"
             strokeWidth={3}
             name="Requests"
           />

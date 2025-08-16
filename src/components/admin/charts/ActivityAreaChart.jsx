@@ -1,5 +1,13 @@
-// ActivityAreaChart.jsx
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 import { FaTint } from "react-icons/fa";
 
 const STATUS_COLORS = {
@@ -12,7 +20,20 @@ const STATUS_COLORS = {
 
 const ActivityAreaChart = ({ donationRequests = [] }) => {
   const currentMonth = new Date().getMonth(); // 0-11
-  const monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
 
   // Last 6 months structure
   const months = Array.from({ length: 6 }).map((_, i) => ({
@@ -25,7 +46,7 @@ const ActivityAreaChart = ({ donationRequests = [] }) => {
   }));
 
   // Fill monthly data dynamically
-  donationRequests.forEach(req => {
+  donationRequests.forEach((req) => {
     const date = new Date(req.donation_date);
     const monthDiff = (currentMonth - date.getMonth() + 12) % 12;
     if (monthDiff < 6) {
@@ -38,7 +59,7 @@ const ActivityAreaChart = ({ donationRequests = [] }) => {
   // Calculate total per status for last 6 months
   const totalCounts = months.reduce(
     (totals, m) => {
-      Object.keys(STATUS_COLORS).forEach(status => {
+      Object.keys(STATUS_COLORS).forEach((status) => {
         totals[status] += m[status];
       });
       return totals;
@@ -61,26 +82,33 @@ const ActivityAreaChart = ({ donationRequests = [] }) => {
           <YAxis />
           <Tooltip />
           <Legend />
-          {["all", "pending", "inprogress", "done", "canceled"].map((status) => (
-            <Area
-              key={status}
-              type="monotone"
-              dataKey={status}
-              stackId="1"
-              stroke={STATUS_COLORS[status]}
-              fill={STATUS_COLORS[status]}
-              fillOpacity={0.6}
-              name={status.charAt(0).toUpperCase() + status.slice(1)}
-            />
-          ))}
+          {["all", "pending", "inprogress", "done", "canceled"].map(
+            (status) => (
+              <Area
+                key={status}
+                type="monotone"
+                dataKey={status}
+                stackId="1"
+                stroke={STATUS_COLORS[status]}
+                fill={STATUS_COLORS[status]}
+                fillOpacity={0.6}
+                name={status.charAt(0).toUpperCase() + status.slice(1)}
+              />
+            )
+          )}
         </AreaChart>
       </ResponsiveContainer>
 
       {/* Total counts */}
       <div className="mt-4 flex gap-4 flex-wrap">
-        {Object.keys(totalCounts).map(status => (
-          <div key={status} className="px-3 py-1 rounded shadow text-white font-semibold" style={{ backgroundColor: STATUS_COLORS[status] }}>
-            {status.charAt(0).toUpperCase() + status.slice(1)}: {totalCounts[status]}
+        {Object.keys(totalCounts).map((status) => (
+          <div
+            key={status}
+            className="px-3 py-1 rounded shadow text-white font-semibold"
+            style={{ backgroundColor: STATUS_COLORS[status] }}
+          >
+            {status.charAt(0).toUpperCase() + status.slice(1)}:{" "}
+            {totalCounts[status]}
           </div>
         ))}
       </div>
