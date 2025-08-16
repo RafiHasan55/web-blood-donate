@@ -3,7 +3,7 @@
 const AboutUsPage = () => {
   return (
     <div className="max-w-5xl mx-auto px-6 py-16">
-      <h1 className="text-4xl font-bold text-red-600 mb-6">
+      <h1 className="text-3xl md:text-4xl font-bold text-red-600 mb-6">
         About Our Blood Donation Platform
       </h1>
 
@@ -20,7 +20,7 @@ const AboutUsPage = () => {
         blood type, and availability, we ensure help arrives at the right time.
       </p>
 
-      <h2 className="text-2xl font-semibold text-red-500 mt-8 mb-2">
+      <h2 className="text-2xl font-semibold text-red-600 mt-8 mb-2">
         Our Mission
       </h2>
       <p className="text-gray-700 mb-4">
@@ -28,7 +28,7 @@ const AboutUsPage = () => {
         donation community, empowering every citizen to be a hero.
       </p>
 
-      <h2 className="text-2xl font-semibold text-red-500 mt-8 mb-2">
+      <h2 className="text-2xl font-semibold text-red-600 mt-8 mb-2">
         Our Values
       </h2>
       <ul className="list-disc list-inside text-gray-700">

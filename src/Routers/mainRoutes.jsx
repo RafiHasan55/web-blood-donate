@@ -58,7 +58,9 @@ const mainRoutes = createBrowserRouter([
       },
       {
         path: "/blog",
-        element: <PublicBlogPage />,
+        element: <PrivateRoute>
+          <PublicBlogPage />
+        </PrivateRoute>,
       },
       {
         path: "/search",

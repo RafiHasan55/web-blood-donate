@@ -120,6 +120,7 @@ const Register = () => {
                 onSubmit={handleSignUp}
                 className="bg-white p-5 flex flex-col gap-8 backdrop-blur-sm bg-opacity-10 shadow-lg rounded-lg"
               >
+                   <Social></Social>
                 <div className="flex justify-start items-center">
                   <div className="">
                     <BiUser className="text-3xl text-slate-500"></BiUser>
@@ -214,7 +215,7 @@ const Register = () => {
                 <input
                   type="submit"
                   value="Register Now"
-                  className="btn cursor-pointer"
+                  className="btn cursor-pointer bg-red-600 hover:bg-red-700  text-white"
                 />
                 <p>
                   Already have an Account?{" "}
@@ -227,7 +228,7 @@ const Register = () => {
                 <p className="text-red-500 text-center mt-2">{errorMessage}</p>
               )}
             </div>
-            <Social></Social>
+         
             <div className="lottie flex-1 flex mx-20 ">
               <Lottie animationData={happy}></Lottie>
             </div>

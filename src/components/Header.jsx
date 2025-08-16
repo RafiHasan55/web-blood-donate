@@ -26,7 +26,6 @@ const Header = () => {
     { name: "About", path: "/about" },
     { name: "Donation Requests", path: "/donation-requests" },
     { name: "Find Donate", path: "/search" },
-    { name: "Our Blogs", path: "/blog" },
     { name: "Contact", path: "/contact" },
   ];
 
@@ -56,6 +55,13 @@ const Header = () => {
               {item.name}
             </NavLink>
           ))}
+
+ {/* Blog link only for not logged in user */}
+  {user && (
+    <NavLink to="/blog" className="hover:text-red-600">
+      Our Blogs
+    </NavLink>
+  )}
 
           {/* Avatar Dropdown */}
           {user ? (

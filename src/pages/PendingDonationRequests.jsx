@@ -14,7 +14,7 @@ export default function PendingDonationRequests() {
   }, []);
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
+    <div className="max-w-11/12 mx-auto py-16">
       <h2 className="text-3xl font-bold text-center mb-8">
         🩸 Blood Donation Requests
       </h2>
@@ -23,7 +23,7 @@ export default function PendingDonationRequests() {
         {requests.map((req) => (
           <div
             key={req._id}
-            className="bg-white shadow rounded-lg p-5 space-y-2"
+            className="bg-white shadow rounded-lg p-5 space-y-2 border"
           >
             <h3 className="text-xl font-bold text-red-600">
               {req.recipient_name}
@@ -42,7 +42,7 @@ export default function PendingDonationRequests() {
             </p>
             <Link
               to={`/donation-request/${req._id}`}
-              className="text-indigo-600 underline"
+              className="text-red-600 hover:text-red-700 underline"
             >
               View Details
             </Link>

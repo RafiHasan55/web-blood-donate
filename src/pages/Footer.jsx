@@ -7,10 +7,9 @@ const Footer = () => {
       <div className="max-w-11/12 mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Logo & Tagline */}
         <div>
-          <h2 className="text-3xl font-bold text-red-500 mb-2">
-            Blood 🩸 Unity
-          </h2>
-          <p className="text-sm text-black ">
+          <Link to='/' className="text-3xl font-bold text-red-500 mb-4"> Blood 🩸 Unity</Link>
+          
+          <p className="text-sm text-black mt-4">
             Together, we build a community of lifesavers. Every drop of blood
             you donate carries the power to save a life, bring hope to a family,
             and make the world a little better. Join us in this noble journey
