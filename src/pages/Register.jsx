@@ -83,7 +83,7 @@ const Register = () => {
           console.log(" here is the profile ", updateProfile);
           toast.success("Account created successfully!");
 
-          await axios.post("http://localhost:5000/add-user", {
+          await axios.post("https://for-mission-scic11-server-template.vercel.app/add-user", {
             name: userData.name,
             email: userData.email,
             photo: userData.photo,

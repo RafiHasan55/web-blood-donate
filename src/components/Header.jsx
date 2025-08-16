@@ -24,27 +24,29 @@ const Header = () => {
   const menu = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
-    { name: "Our Blogs", path: "/blog" },
     { name: "Donation Requests", path: "/donation-requests" },
+    { name: "Find Donate", path: "/search" },
+    { name: "Our Blogs", path: "/blog" },
+    { name: "Contact", path: "/contact" },
   ];
 
   return (
-    <nav className="bg-white shadow">
+    <nav className="bg-red-100 shadow-md sticky top-0 z-50">
       {user && (
-        <p className="text-center text-white bg-black py-2 bg-opacity-90">
+        <p className="hidden md:block text-center text-white bg-black py-2 bg-opacity-90">
           Welcome {user?.displayName} 🩸❤️ Thank you for being part of our
           lifesaving mission.
         </p>
       )}
 
-      <div className="w-11/12 mx-auto py-5 flex justify-between items-center relative">
+      <div className="max-w-11/12 mx-auto py-5 flex justify-between items-center relative">
         {/* Logo */}
         <Link to="/" className="text-xl font-bold text-stone-700">
           Blood 🩸 Unity
         </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden lg:flex items-center gap-6">
+        <ul className="hidden lg:flex items-center gap-6 font-bold">
           {menu.map((item) => (
             <NavLink
               key={item.path}
@@ -70,13 +72,19 @@ const Header = () => {
                 <FaCaretDown className="text-gray-600" />
               </div>
               {isDropdownOpen && (
-                <ul className="absolute right-0 mt-2 bg-white border shadow-md w-40 rounded-md z-50 text-sm">
-                  <li className="px-4 py-2 hover:bg-gray-100">
+                <ul className=" absolute right-0 mt-2 bg-white border shadow-md w-40 rounded-md z-[9999] text-sm">
+                  <li
+                    onClick={() => setIsDropdownOpen(false)}
+                    className="px-4 py-2 hover:bg-gray-100"
+                  >
                     <Link to="/dashboard">Dashboard</Link>
                   </li>
                   <li
+                    onClick={() => {
+                      handleLogout();
+                      setIsDropdownOpen(false);
+                    }}
                     className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                    onClick={handleLogout}
                   >
                     Logout
                   </li>
@@ -85,8 +93,12 @@ const Header = () => {
             </div>
           ) : (
             <>
-              <NavLink to="/login">Login</NavLink>
-              <NavLink to="/registration">Register</NavLink>
+              <NavLink className="hover:text-red-600" to="/login">
+                Login
+              </NavLink>
+              <NavLink className="hover:text-red-600" to="/registration">
+                Register
+              </NavLink>
             </>
           )}
         </ul>
@@ -115,25 +127,44 @@ const Header = () => {
                 key={item.path}
                 to={item.path}
                 className="px-6 hover:text-red-600"
+                onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
               </NavLink>
             ))}
             {user ? (
               <>
-                <NavLink to="/dashboard" className="px-6">
+                <NavLink
+                  onClick={() => setIsMenuOpen(false)}
+                  to="/dashboard"
+                  className="px-6"
+                >
                   Dashboard
                 </NavLink>
-                <button onClick={handleLogout} className="px-6 text-left">
+                <button
+                  onClick={() => {
+                    handleLogout();
+                    setIsMenuOpen(false);
+                  }}
+                  className="px-6 text-left"
+                >
                   Logout
                 </button>
               </>
             ) : (
               <>
-                <NavLink to="/login" className="px-6">
+                <NavLink
+                  onClick={() => setIsMenuOpen(false)}
+                  to="/login"
+                  className="px-6"
+                >
                   Login
                 </NavLink>
-                <NavLink to="/registration" className="px-6">
+                <NavLink
+                  onClick={() => setIsMenuOpen(false)}
+                  to="/registration"
+                  className="px-6"
+                >
                   Register
                 </NavLink>
               </>

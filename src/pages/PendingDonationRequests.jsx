@@ -8,7 +8,7 @@ export default function PendingDonationRequests() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/public-donation-requests?status=pending")
+      .get("https://for-mission-scic11-server-template.vercel.app/public-donation-requests?status=pending")
       .then((res) => setRequests(res.data))
       .catch((err) => console.error("Error loading donation requests", err));
   }, []);

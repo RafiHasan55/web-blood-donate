@@ -26,6 +26,7 @@ import SearchDonorPage from "../pages/SearchDonorPage";
 import AboutUsPage from "../pages/AboutUsPage";
 import PendingDonationRequests from "../pages/PendingDonationRequests";
 import DonationRequestDetails from "../pages/DonationRequestDetails";
+import ContactUs from "../pages/ContactUs";
 
 const mainRoutes = createBrowserRouter([
   {
@@ -63,13 +64,17 @@ const mainRoutes = createBrowserRouter([
         path: "/search",
         element: <SearchDonorPage />,
       },
+      {
+        path: "/contact",
+        element: <ContactUs></ContactUs>
+      },
 
       {
         path: "/details/:bookId",
         element: <DetailsPage />,
         loader: async ({ params }) => {
           const { data } = await axios.get(
-            `http://localhost:5000/details/${params.bookId}`
+            `https://for-mission-scic11-server-template.vercel.app/details/${params.bookId}`
           );
           return data;
         },
