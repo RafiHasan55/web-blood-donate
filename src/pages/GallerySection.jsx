@@ -10,9 +10,13 @@ const GallerySection = () => {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="pt-16 bg-white">
       <div className="max-w-6xl mx-auto px-6 text-center">
-        <h2 className="text-4xl font-bold text-red-600 mb-10">Our Gallery</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-red-600 mb-4">Our Gallery</h2>
+        <p className="text-gray-700 max-w-3xl mx-auto text-lg mb-10">
+          A glimpse into our life-saving journey — from donation drives, awareness programs, and community events. 
+  Every picture tells a story of hope, compassion, and unity.
+          </p> 
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
           {images.map((src, idx) => (
             <div

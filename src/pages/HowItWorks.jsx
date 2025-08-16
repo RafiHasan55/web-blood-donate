@@ -25,9 +25,13 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-16 bg-white">
       <div className="max-w-6xl mx-auto px-6 text-center">
-        <h2 className="text-4xl font-bold text-red-600 mb-12">How It Works</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-red-600 mb-4">How It Works</h2>
+        <p className="text-gray-700 max-w-3xl mx-auto text-lg mb-10">
+         Follow these simple steps to become a lifesaving blood donor. 
+Register, get notified, donate, and make a real difference in someone’s life.
+        </p>
         <div className="grid gap-8 md:grid-cols-4">
           {steps.map((step, index) => (
             <div

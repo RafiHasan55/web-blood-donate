@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import Loading from "./Loading";
 
 export default function PublicBlogPage() {
   const axiosSecure = useAxiosSecure();
@@ -39,26 +40,33 @@ export default function PublicBlogPage() {
 
       {/* Blog List */}
       {filteredBlogs.length === 0 ? (
-        <p className="text-gray-500">No blogs found for your search.</p>
+        <div className="flex justify-center">
+          <Loading />
+        </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {filteredBlogs.map((blog) => (
             <div
               key={blog._id}
-              className="bg-white shadow rounded-xl overflow-hidden"
+              className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 flex flex-col h-full"
             >
               <img
                 src={blog.thumbnail}
                 alt={blog.title}
-                className="w-full h-48 object-cover"
+                className="w-full h-56 object-cover rounded-t-2xl"
               />
-              <div className="p-4">
-                <h3 className="text-xl font-semibold">{blog.title}</h3>
+              <div className="p-6 flex flex-col justify-between flex-1">
+                <div>
+                  <h3 className="text-xl font-bold mb-3 text-gray-800">{blog.title}</h3>
+                  <p className="text-gray-600 mb-5 line-clamp-3">
+                    {blog.content.replace(/<[^>]+>/g, "")}
+                  </p>
+                </div>
                 <button
                   onClick={() => setSelectedBlog(blog)}
-                  className="mt-3 text-blue-600 underline"
+                  className="px-6 py-2 bg-red-600 text-white rounded-full hover:bg-red-700 transition self-start"
                 >
-                  View More
+                  Read More
                 </button>
               </div>
             </div>
