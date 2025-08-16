@@ -8,7 +8,7 @@ export default function AllUsers() {
   const [filter, setFilter] = useState("all");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [openDropdownIndex, setOpenDropdownIndex] = useState(null); // 👈 Added
+  const [openDropdownIndex, setOpenDropdownIndex] = useState(null); //  Added
   const limit = 6;
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export default function AllUsers() {
     setUsers((prev) =>
       prev.map((user) => (user.email === email ? { ...user, status } : user))
     );
-    setOpenDropdownIndex(null); // 👈 Close dropdown
+    setOpenDropdownIndex(null); //  Close dropdown
   };
 
   const updateRole = async (email, role) => {
@@ -33,7 +33,7 @@ export default function AllUsers() {
     setUsers((prev) =>
       prev.map((user) => (user.email === email ? { ...user, role } : user))
     );
-    setOpenDropdownIndex(null); // 👈 Close dropdown
+    setOpenDropdownIndex(null); //  Close dropdown
   };
 
   const toggleDropdown = (index) => {

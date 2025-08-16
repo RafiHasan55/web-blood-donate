@@ -22,7 +22,7 @@ const CheckoutForm = ({ amount, handleRequest }) => {
 
   useEffect(() => {
     if (amount > 0)
-      // Call backend to get client secret
+     
       axios
         .post("/create-payment-intent", {
           amount,

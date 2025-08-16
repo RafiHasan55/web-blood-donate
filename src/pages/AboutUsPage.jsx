@@ -1,4 +1,4 @@
-// pages/AboutUsPage.jsx
+import React from "react";
 
 const AboutUsPage = () => {
   return (

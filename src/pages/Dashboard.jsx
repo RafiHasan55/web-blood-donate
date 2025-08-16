@@ -9,9 +9,11 @@ export default function Dashboard() {
   const { role, loading } = useRole();
 
   if (loading) {
-    return <div>
-      <Loading></Loading>
-    </div>
+    return (
+      <div>
+        <Loading></Loading>
+      </div>
+    );
   }
 
   if (role === "donor") {

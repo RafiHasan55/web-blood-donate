@@ -8,28 +8,27 @@ export default function DonationDetails() {
   const axiosSecure = useAxiosSecure();
 
   const [donation, setDonation] = useState(null);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     axiosSecure
       .get(`/donation-requests/${id}`)
       .then((res) => {
         setDonation(res.data);
-        setLoading(false); 
+        setLoading(false);
       })
       .catch((err) => {
         console.error("Failed to fetch donation details:", err);
-        setLoading(false); 
+        setLoading(false);
       });
   }, [axiosSecure, id]);
 
-
-if (loading) {
-  return (
-    <div className="flex justify-center items-center h-screen">
-      <Loading />
-    </div>
-  );
-}
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-3xl mx-auto mt-10 p-6 bg-white rounded-xl shadow">
@@ -38,17 +37,39 @@ if (loading) {
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-700">
-        <div><strong>Recipient Name:</strong> {donation.recipient_name}</div>
-        <div><strong>Blood Group:</strong> {donation.blood_group}</div>
-        <div><strong>District:</strong> {donation.district_id}</div>
-        <div><strong>Upazila:</strong> {donation.upazila_id}</div>
-        <div><strong>Hospital:</strong> {donation.hospital_name}</div>
-        <div><strong>Address:</strong> {donation.address}</div>
-        <div><strong>Donation Date:</strong> {donation.donation_date}</div>
-        <div><strong>Donation Time:</strong> {donation.donation_time}</div>
-        <div><strong>Status:</strong> {donation.status}</div>
-        <div><strong>Requester:</strong> {donation.requester_name}</div>
-        <div><strong>Email:</strong> {donation.requester_email}</div>
+        <div>
+          <strong>Recipient Name:</strong> {donation.recipient_name}
+        </div>
+        <div>
+          <strong>Blood Group:</strong> {donation.blood_group}
+        </div>
+        <div>
+          <strong>District:</strong> {donation.district_id}
+        </div>
+        <div>
+          <strong>Upazila:</strong> {donation.upazila_id}
+        </div>
+        <div>
+          <strong>Hospital:</strong> {donation.hospital_name}
+        </div>
+        <div>
+          <strong>Address:</strong> {donation.address}
+        </div>
+        <div>
+          <strong>Donation Date:</strong> {donation.donation_date}
+        </div>
+        <div>
+          <strong>Donation Time:</strong> {donation.donation_time}
+        </div>
+        <div>
+          <strong>Status:</strong> {donation.status}
+        </div>
+        <div>
+          <strong>Requester:</strong> {donation.requester_name}
+        </div>
+        <div>
+          <strong>Email:</strong> {donation.requester_email}
+        </div>
       </div>
 
       <div className="mt-6">

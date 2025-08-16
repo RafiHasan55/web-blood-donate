@@ -2,12 +2,14 @@ const ContactUs = () => {
   return (
     <section className="py-16 bg-white">
       <div className="max-w-5xl mx-auto px-4">
-       <h2 className="text-3xl md:text-4xl font-bold text-red-600 mb-4 text-center">Contact Us</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-red-600 mb-4 text-center">
+          Contact Us
+        </h2>
         <p className="text-gray-700 max-w-3xl mx-auto text-lg mb-10 text-center">
-         Have questions or need assistance? We’re here to support you. 
-  Reach out to us anytime for help, guidance, or collaboration opportunities. 
-  Together, we can make a difference.
-          </p> 
+          Have questions or need assistance? We’re here to support you. Reach
+          out to us anytime for help, guidance, or collaboration opportunities.
+          Together, we can make a difference.
+        </p>
         <div className="grid md:grid-cols-2 gap-8">
           <form className="space-y-4">
             <input

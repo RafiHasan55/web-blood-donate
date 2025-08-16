@@ -3,7 +3,6 @@ import { useContext, useEffect } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 
 const instance = axios.create({
-  // baseURL: "https://for-mission-scic11-server-template.vercel.app/",
   baseURL: "https://for-mission-scic11-server-template.vercel.app/",
 });
 

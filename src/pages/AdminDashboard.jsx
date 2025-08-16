@@ -1,9 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { AuthContext } from "../providers/AuthProvider";
-import { FaDollarSign, FaTint, FaUsers, FaUserCheck, FaUserTimes } from "react-icons/fa";
+import {
+  FaDollarSign,
+  FaTint,
+  FaUsers,
+  FaUserCheck,
+  FaUserTimes,
+} from "react-icons/fa";
 
-// Chart Components Import
+
 import UserStatusPieChart from "../components/admin/charts/UserStatusPieChart";
 import StatCard from "../components/StatCard";
 
@@ -13,7 +19,7 @@ import ActivityAreaChart from "../components/admin/charts/ActivityAreaChart";
 
 const AdminDashboard = () => {
   const { user } = useContext(AuthContext);
-const [donationRequests, setDonationRequests] = useState([]);
+  const [donationRequests, setDonationRequests] = useState([]);
 
   const [stats, setStats] = useState({
     totalUsers: 0,
@@ -32,12 +38,11 @@ const [donationRequests, setDonationRequests] = useState([]);
   const [blogs, setBlogs] = useState([]);
   const axiosSecure = useAxiosSecure();
 
-useEffect(() => {
-  axiosSecure("/all-donation-requests?status=all&page=1&limit=1000")
-    .then(({ data }) => setDonationRequests(data.donations))
-    .catch(err => console.error(err));
-}, [axiosSecure]);
-
+  useEffect(() => {
+    axiosSecure("/all-donation-requests?status=all&page=1&limit=1000")
+      .then(({ data }) => setDonationRequests(data.donations))
+      .catch((err) => console.error(err));
+  }, [axiosSecure]);
 
   useEffect(() => {
     // Fetch dashboard stats
@@ -48,9 +53,15 @@ useEffect(() => {
 
   const fetchUserCounts = async () => {
     try {
-      const totalResponse = await axiosSecure.get("/get-users?status=all&page=1&limit=1");
-      const activeResponse = await axiosSecure.get("/get-users?status=active&page=1&limit=1");
-      const blockedResponse = await axiosSecure.get("/get-users?status=blocked&page=1&limit=1");
+      const totalResponse = await axiosSecure.get(
+        "/get-users?status=all&page=1&limit=1"
+      );
+      const activeResponse = await axiosSecure.get(
+        "/get-users?status=active&page=1&limit=1"
+      );
+      const blockedResponse = await axiosSecure.get(
+        "/get-users?status=blocked&page=1&limit=1"
+      );
 
       setUserCounts({
         total: totalResponse.data.total || 0,
@@ -122,9 +133,10 @@ useEffect(() => {
       {/* Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <UserStatusPieChart userCounts={userCounts} />
-        <BlogStatusPieChart blogs={blogs} /> {/* Chart only in AdminDashboard */}
+        <BlogStatusPieChart blogs={blogs} />{" "}
+        {/* Chart only in AdminDashboard */}
       </div>
-<PlatformStatsBarChart userCounts={userCounts} stats={stats} />
+      <PlatformStatsBarChart userCounts={userCounts} stats={stats} />
       {/* <PlatformStatsBarChart userCounts={userCounts} stats={stats} /> */}
       <ActivityAreaChart donationRequests={donationRequests} />
     </div>

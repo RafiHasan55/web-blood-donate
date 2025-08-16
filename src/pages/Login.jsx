@@ -44,7 +44,7 @@ const Login = () => {
                 onSubmit={handleSubmit}
                 className="bg-white p-5 flex flex-col gap-8 backdrop-blur-sm bg-opacity-10 shadow-lg rounded-lg"
               >
-                   <Social></Social>
+                <Social></Social>
                 <div className="flex justify-start items-center">
                   <div className="">
                     <BiEnvelope className="text-3xl text-slate-500"></BiEnvelope>
@@ -93,7 +93,7 @@ const Login = () => {
                 </p>
               </form>
             </div>
-         
+
             <div className="lottie  flex-1 mx-20">
               <Lottie animationData={loginAnimation} loop={true}></Lottie>
             </div>

@@ -1,12 +1,12 @@
-// components/AboutUsPreview.jsx
-
 import { Link } from "react-router";
 
 const AboutUsPreview = () => {
   return (
     <section className="bg-red-50 py-16 my-10">
       <div className="max-w-6xl mx-auto px-6 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-red-600 mb-4">About Us</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-red-600 mb-4">
+          About Us
+        </h2>
         <p className="text-gray-700 max-w-3xl mx-auto text-lg mb-6">
           We are a life-saving community platform that connects blood donors
           with people in need. Our mission is to ensure no life is lost due to
