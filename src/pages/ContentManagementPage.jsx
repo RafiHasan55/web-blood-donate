@@ -1,17 +1,27 @@
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { Link } from "react-router";
+import Loading from "./Loading";
 
 export default function ContentManagementPage() {
   const [blogs, setBlogs] = useState([]);
   const [filter, setFilter] = useState("all");
   const [selectedBlog, setSelectedBlog] = useState(null);
+  const [loading, setLoading] = useState(true); // Loader state
   const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
+    setLoading(true); // Start loader
     axiosSecure
       .get(`/blogs?status=${filter}`)
-      .then(({ data }) => setBlogs(data));
+      .then(({ data }) => {
+        setBlogs(data);
+        setLoading(false); // Stop loader
+      })
+      .catch((err) => {
+        console.error("Error fetching blogs:", err);
+        setLoading(false); // Stop loader even if error
+      });
   }, [filter]);
 
   const togglePublish = async (id, currentStatus) => {
@@ -54,42 +64,47 @@ export default function ContentManagementPage() {
         </select>
       </div>
 
-      {/* Blog Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {blogs.map((blog) => (
-          <div key={blog._id} className="bg-white p-4 rounded shadow">
-            <img
-              src={blog.thumbnail}
-              alt={blog.title}
-              className="w-full h-48 object-cover rounded"
-            />
-            <h3 className="text-lg font-semibold mt-2">{blog.title}</h3>
-            <p className="text-sm text-gray-500 capitalize mt-1">
-              Status: {blog.status}
-            </p>
-            <div className="flex gap-3 mt-3 flex-wrap">
-              <button
-                onClick={() => setSelectedBlog(blog)}
-                className="px-4 py-1 bg-blue-600 text-white rounded"
-              >
-                View
-              </button>
-              <button
-                onClick={() => togglePublish(blog._id, blog.status)}
-                className="px-4 py-1 bg-green-600 text-white rounded"
-              >
-                {blog.status === "draft" ? "Publish" : "Unpublish"}
-              </button>
-              <button
-                onClick={() => handleDelete(blog._id)}
-                className="px-4 py-1 bg-red-600 text-white rounded"
-              >
-                Delete
-              </button>
+      {/* Loader */}
+      {loading ? (
+       <Loading></Loading>
+      ) : (
+        /* Blog Grid */
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {blogs.map((blog) => (
+            <div key={blog._id} className="bg-white p-4 rounded shadow">
+              <img
+                src={blog.thumbnail}
+                alt={blog.title}
+                className="w-full h-48 object-cover rounded"
+              />
+              <h3 className="text-lg font-semibold mt-2">{blog.title}</h3>
+              <p className="text-sm text-gray-500 capitalize mt-1">
+                Status: {blog.status}
+              </p>
+              <div className="flex gap-3 mt-3 flex-wrap">
+                <button
+                  onClick={() => setSelectedBlog(blog)}
+                  className="px-4 py-1 bg-blue-600 text-white rounded"
+                >
+                  View
+                </button>
+                <button
+                  onClick={() => togglePublish(blog._id, blog.status)}
+                  className="px-4 py-1 bg-green-600 text-white rounded"
+                >
+                  {blog.status === "draft" ? "Publish" : "Unpublish"}
+                </button>
+                <button
+                  onClick={() => handleDelete(blog._id)}
+                  className="px-4 py-1 bg-red-600 text-white rounded"
+                >
+                  Delete
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
 
       {/* Blog Modal */}
       {selectedBlog && (

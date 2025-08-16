@@ -10,6 +10,7 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
+import Loading from "./Loading";
 
 const stripePromise = loadStripe(
   "pk_test_51RpDWkJvn2vRwr79JU1R6wAF7iTOEQh7ycL5IJmk357jRwZczwNXcepEKEWOll1VneNU5d81G0oTrCUqmfPgZEbU009gZZPm4l"
@@ -92,7 +93,9 @@ export default function DonationRequestDetails() {
       .catch(() => toast.error("Failed to load donation details"));
   }, [id, axiosSecure, user, navigate]);
 
-  if (!data) return <p className="text-center mt-10">Loading...</p>;
+  if (!data) return <div>
+    <Loading></Loading>
+  </div>;
 
   return (
     <div className="max-w-2xl mx-auto p-6">

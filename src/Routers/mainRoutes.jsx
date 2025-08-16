@@ -7,7 +7,6 @@ import AllUsers from "../pages/AllUsers";
 
 import Dashboard from "../pages/Dashboard";
 import DetailsPage from "../pages/DetailsPage";
-import Error from "../pages/Error";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import MyBooks from "../pages/MyBooks";
@@ -27,12 +26,13 @@ import AboutUsPage from "../pages/AboutUsPage";
 import PendingDonationRequests from "../pages/PendingDonationRequests";
 import DonationRequestDetails from "../pages/DonationRequestDetails";
 import ContactUs from "../pages/ContactUs";
+import ErrorPage from "../pages/ErrorPage";
 
 const mainRoutes = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout></RootLayout>,
-    errorElement: <Error></Error>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",

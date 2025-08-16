@@ -1,5 +1,6 @@
 import { NavLink } from "react-router";
 import useRole from "../hooks/useRole";
+import Loading from "../pages/Loading";
 
 export default function DashboardSidebar() {
   const NavItem = ({ to, icon, label }) => (
@@ -19,7 +20,9 @@ export default function DashboardSidebar() {
 
   const { role, loading } = useRole();
 
-  if (loading) return <h1>Loading...</h1>;
+  if (loading) return <div>
+    <Loading></Loading>
+  </div>;
 
   const isAdmin = role === "admin";
   const isVolunteer = role === "volunteer";

@@ -5,13 +5,15 @@ import { FaDollarSign, FaTint, FaUsers, FaUserCheck, FaUserTimes } from "react-i
 
 // Chart Components Import
 import UserStatusPieChart from "../components/admin/charts/UserStatusPieChart";
-import ActivityAreaChart from "../components/admin/charts/ActivityAreaChart";
 import StatCard from "../components/StatCard";
+
+import BlogStatusPieChart from "../components/admin/charts/BlogStatusPieChart";
 import PlatformStatsBarChart from "../components/admin/charts/PlatformStatsBarChart ";
-import ContentStatusPieChart from "../components/admin/charts/ContentStatusPieChart";
+import ActivityAreaChart from "../components/admin/charts/ActivityAreaChart";
 
 const AdminDashboard = () => {
   const { user } = useContext(AuthContext);
+const [donationRequests, setDonationRequests] = useState([]);
 
   const [stats, setStats] = useState({
     totalUsers: 0,
@@ -27,11 +29,21 @@ const AdminDashboard = () => {
     blocked: 0,
   });
 
+  const [blogs, setBlogs] = useState([]);
   const axiosSecure = useAxiosSecure();
 
+useEffect(() => {
+  axiosSecure("/all-donation-requests?status=all&page=1&limit=1000")
+    .then(({ data }) => setDonationRequests(data.donations))
+    .catch(err => console.error(err));
+}, [axiosSecure]);
+
+
   useEffect(() => {
+    // Fetch dashboard stats
     axiosSecure("/admin-dashboard-stats").then(({ data }) => setStats(data));
     fetchUserCounts();
+    fetchBlogs();
   }, [axiosSecure]);
 
   const fetchUserCounts = async () => {
@@ -47,6 +59,15 @@ const AdminDashboard = () => {
       });
     } catch (error) {
       console.error("Error fetching user counts:", error);
+    }
+  };
+
+  const fetchBlogs = async () => {
+    try {
+      const res = await axiosSecure.get("/blogs?status=all");
+      setBlogs(res.data || []);
+    } catch (error) {
+      console.error("Error fetching blogs:", error);
     }
   };
 
@@ -101,12 +122,11 @@ const AdminDashboard = () => {
       {/* Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <UserStatusPieChart userCounts={userCounts} />
-        <ContentStatusPieChart></ContentStatusPieChart>
-
+        <BlogStatusPieChart blogs={blogs} /> {/* Chart only in AdminDashboard */}
       </div>
-
-      <PlatformStatsBarChart userCounts={userCounts} stats={stats} />
-      <ActivityAreaChart userCounts={userCounts} />
+<PlatformStatsBarChart userCounts={userCounts} stats={stats} />
+      {/* <PlatformStatsBarChart userCounts={userCounts} stats={stats} /> */}
+      <ActivityAreaChart donationRequests={donationRequests} />
     </div>
   );
 };

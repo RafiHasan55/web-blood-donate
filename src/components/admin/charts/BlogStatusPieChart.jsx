@@ -1,24 +1,24 @@
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
-const ContentStatusPieChart = ({ users = [] }) => {
-  // Safe check jodi users thake
-  const totalUsers = users.length || 0;
-  const activeUsers = users.filter((user) => user.status === "active").length || 0;
-  const blockedUsers = users.filter((user) => user.status === "blocked").length || 0;
+const BlogStatusPieChart = ({ blogs = [] }) => {
+  // count data safely
+  const totalBlogs = blogs.length || 0;
+  const publishedBlogs = blogs.filter((blog) => blog.status === "published").length || 0;
+  const draftBlogs = blogs.filter((blog) => blog.status === "draft").length || 0;
 
-  const userStatusData = [
-    { name: "Active Users", value: activeUsers, color: "#10B981" },
-    { name: "Blocked Users", value: blockedUsers, color: "#EF4444" },
-    { name: "All Users", value: totalUsers, color: "#3B82F6" },
+  const blogStatusData = [
+    { name: "Published Blogs", value: publishedBlogs, color: "#10B981" },
+    { name: "Draft Blogs", value: draftBlogs, color: "#F59E0B" },
+    { name: "Total Blogs", value: totalBlogs, color: "#3B82F6" },
   ];
 
   return (
     <div className="p-4 bg-white rounded-2xl shadow-md">
-      <h2 className="text-lg font-semibold mb-4">User Status Distribution</h2>
+      <h2 className="text-lg font-semibold mb-4">Blog Status Distribution</h2>
       <ResponsiveContainer width="100%" height={250}>
         <PieChart>
           <Pie
-            data={userStatusData}
+            data={blogStatusData}
             cx="50%"
             cy="50%"
             labelLine={false}
@@ -29,7 +29,7 @@ const ContentStatusPieChart = ({ users = [] }) => {
             fill="#8884d8"
             dataKey="value"
           >
-            {userStatusData.map((entry, index) => (
+            {blogStatusData.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={entry.color} />
             ))}
           </Pie>
@@ -41,4 +41,4 @@ const ContentStatusPieChart = ({ users = [] }) => {
   );
 };
 
-export default ContentStatusPieChart;
+export default BlogStatusPieChart;
