@@ -6,6 +6,7 @@ import Faqs from "./Faqs";
 import FeaturedSection from "./FeaturedSection";
 import GallerySection from "./GallerySection";
 import HowItWorks from "./HowItWorks";
+import ScrollToTopButton from "./ScrollToTopButton";
 import TestimonialSlider from "./TestimonialSlider";
 
 const Home = () => {
@@ -20,6 +21,7 @@ const Home = () => {
       <Faqs></Faqs>
       <TestimonialSlider></TestimonialSlider>
       <ContactUs></ContactUs>
+      <ScrollToTopButton></ScrollToTopButton>
     </>
   );
 };

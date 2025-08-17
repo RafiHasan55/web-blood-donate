@@ -110,7 +110,17 @@ const Header = () => {
         </ul>
 
         {/* Mobile Menu */}
-        <div className="lg:hidden">
+
+        <div className="lg:hidden flex justify-center items-center">
+          {user && (
+            <div className="mr-4">
+              <img
+                src={user?.photoURL || "https://i.ibb.co/2P5zz1y/avatar.png"}
+                alt="avatar"
+                className="w-10 h-10 rounded-full border text-right"
+              />
+            </div>
+          )}
           {!isMenuOpen ? (
             <RiMenuAddLine
               onClick={() => setIsMenuOpen(true)}
@@ -138,6 +148,7 @@ const Header = () => {
                 {item.name}
               </NavLink>
             ))}
+
             {user ? (
               <>
                 <NavLink
