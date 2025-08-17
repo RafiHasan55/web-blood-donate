@@ -93,7 +93,7 @@ export default function CreateDonationRequest() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-2xl mx-auto bg-white p-8 shadow-lg rounded-xl space-y-6 mt-10"
+      className="text-black max-w-2xl mx-auto bg-white p-8 shadow-lg rounded-xl space-y-6 mt-10"
     >
       <h2 className="text-2xl font-bold text-center text-gray-700">
         🩸 Create Donation Request
@@ -128,7 +128,7 @@ export default function CreateDonationRequest() {
             value={formData.recipient_name}
             onChange={handleChange}
             required
-            className="input input-bordered w-full"
+            className="input input-bordered w-full text-base-content"
           />
         </div>
 
@@ -165,7 +165,7 @@ export default function CreateDonationRequest() {
             value={formData.hospital_name}
             onChange={handleChange}
             required
-            className="input input-bordered w-full"
+            className="text-base-content input input-bordered w-full"
           />
         </div>
 
@@ -177,7 +177,7 @@ export default function CreateDonationRequest() {
             value={formData.address}
             onChange={handleChange}
             required
-            className="input input-bordered w-full"
+            className="text-base-content input input-bordered w-full"
           />
         </div>
 
@@ -188,7 +188,7 @@ export default function CreateDonationRequest() {
             value={formData.blood_group}
             onChange={handleChange}
             required
-            className="input input-bordered w-full"
+            className="text-base-content input input-bordered w-full"
           >
             <option value="">Select Blood Group</option>
             {["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"].map((group) => (
@@ -207,7 +207,7 @@ export default function CreateDonationRequest() {
             value={formData.donation_date}
             onChange={handleChange}
             required
-            className="input input-bordered w-full"
+            className="text-base-content input input-bordered w-full"
           />
         </div>
 
@@ -219,7 +219,7 @@ export default function CreateDonationRequest() {
             value={formData.donation_time}
             onChange={handleChange}
             required
-            className="input input-bordered w-full"
+            className="text-base-content input input-bordered w-full"
           />
         </div>
       </div>
@@ -232,7 +232,7 @@ export default function CreateDonationRequest() {
           value={formData.message}
           onChange={handleChange}
           required
-          className="textarea textarea-bordered w-full"
+          className="text-base-content textarea textarea-bordered w-full"
         ></textarea>
       </div>
 

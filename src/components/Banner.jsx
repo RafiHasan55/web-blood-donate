@@ -17,14 +17,14 @@ const Banner = () => {
   };
 
   return (
-    <section className="bg-white max-w-11/12 mx-auto">
-      <div className="flex flex-col-reverse lg:flex-row items-center justify-between md:min-h-[55vh] lg:min-h-[90vh] max-w-7xl mx-auto px-6">
+    <section className="dark:bg-black max-w-11/12 mx-auto">
+      <div className="flex flex-col-reverse lg:flex-row items-center justify-between md:min-h-[55vh] lg:min-h-[90vh] max-w-7xl mx-auto px-6 ">
         {/* Left: Text Section */}
         <div className="py-12 text space-y-6 max-w-xl text-center md:text-left">
           <h1 className="text-3xl md:text-5xl font-bold leading-tight">
             Find <span className="text-red-600">Blood Donors</span> Easily
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-base-content">
             Search for lifesaving blood donors near you. Fast, simple, and
             effective.
           </p>
@@ -49,7 +49,7 @@ const Banner = () => {
           <h3 className="text-xl font-semibold mb-4 text-gray-800">
             Search Donors
           </h3>
-          <form onSubmit={handleSearch} className="space-y-4">
+          <form onSubmit={handleSearch} className="space-y-4 text-black">
             {/* Blood Group */}
             <select
               className="w-full border px-4 py-2 rounded"

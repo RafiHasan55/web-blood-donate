@@ -18,7 +18,7 @@ const DistrictSelect = ({ onChange, value }) => {
   }, []);
 
   return (
-    <div className="flex justify-start items-center">
+    <div className="flex justify-start items-center text-black">
       <div className="">
         <span className="text-2xl font-semibold text-slate-600 mr-2">🏙️</span>
       </div>

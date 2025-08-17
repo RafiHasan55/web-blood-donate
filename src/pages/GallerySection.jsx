@@ -9,12 +9,12 @@ const GallerySection = () => {
   ];
 
   return (
-    <section className="pt-16 bg-white">
+    <section className="pt-16">
       <div className="max-w-6xl mx-auto px-6 text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-red-600 mb-4">
           Our Gallery
         </h2>
-        <p className="text-gray-700 max-w-3xl mx-auto text-lg mb-10">
+        <p className="text-base-content max-w-3xl mx-auto text-lg mb-10">
           A glimpse into our life-saving journey — from donation drives,
           awareness programs, and community events. Every picture tells a story
           of hope, compassion, and unity.

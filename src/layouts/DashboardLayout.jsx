@@ -8,7 +8,7 @@ const DashboardLayout = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row bg-gray-100 relative z-[10]">
+    <div className="min-h-screen flex flex-col md:flex-row dark:bg-black bg-gray-100 relative z-[10]">
       {/* Mobile Top Bar */}
       <div className="flex items-center justify-between md:hidden bg-white shadow px-4 py-3">
         <h2 className="text-xl font-semibold text-red-600">Dashboard</h2>

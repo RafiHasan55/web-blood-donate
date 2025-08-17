@@ -19,7 +19,7 @@ const UserStatusPieChart = ({ userCounts }) => {
     <div className="bg-white shadow-md rounded-xl p-4">
       <div className="flex items-center gap-2 mb-4">
         <FaChartLine className="text-blue-600" />
-        <h2 className="text-lg font-semibold">User Status Distribution</h2>
+        <h2 className="text-lg font-semibold text-black">User Status Distribution</h2>
       </div>
 
       <ResponsiveContainer width="100%" height={250}>

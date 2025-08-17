@@ -74,7 +74,7 @@ export default function AllBloodDonationRequests() {
       {/* Table */}
       <div className="bg-white shadow rounded-xl p-5">
         <div className="overflow-x-auto">
-          <table className="min-w-full text-sm text-left border">
+          <table className=" text-black min-w-full text-sm text-left border">
             <thead className="bg-gray-100">
               <tr>
                 <th className="p-2">Recipient</th>

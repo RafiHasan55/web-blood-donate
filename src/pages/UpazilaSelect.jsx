@@ -32,7 +32,7 @@ const UpazilaSelect = ({ selectedDistrictId, value, onChange }) => {
   }, [selectedDistrictId, upazilas]);
 
   return (
-    <div className="flex justify-start items-center mt-4">
+    <div className="text-black flex justify-start items-center mt-4">
       <div>
         <span className="text-2xl font-semibold text-slate-600 mr-2">🏞️</span>
       </div>

@@ -8,7 +8,7 @@ const Faqs = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-red-600 mb-4 text-center">
             Frequently Asked Questions
           </h2>
-          <p className="text-gray-700 max-w-3xl mx-auto text-lg mb-10 text-center dark:text-gray-600">
+          <p className="text-base-content max-w-3xl mx-auto text-lg mb-10 text-center dark:text-gray-600">
             Find answers to common questions about registering, donating, and
             saving lives with Blood Unity. Stay informed and contribute safely.
           </p>

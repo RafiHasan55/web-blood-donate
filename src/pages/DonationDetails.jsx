@@ -72,7 +72,7 @@ export default function DonationDetails() {
         </div>
       </div>
 
-      <div className="mt-6">
+      <div className="mt-6 text-black">
         <strong>Message:</strong>
         <p className="mt-2 bg-gray-100 p-3 rounded-lg">{donation.message}</p>
       </div>

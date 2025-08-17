@@ -25,21 +25,21 @@ export default function PendingDonationRequests() {
         {requests.map((req) => (
           <div
             key={req._id}
-            className="bg-white shadow rounded-lg p-5 space-y-2 border"
+            className="bg-white shadow rounded-lg p-5 space-y-2 border hover:scale-105 transition-transform duration-300"
           >
             <h3 className="text-xl font-bold text-red-600">
               {req.recipient_name}
             </h3>
-            <p>
+            <p className="text-black">
               <strong>Location:</strong> {req.district_id || "N/A"}
             </p>
-            <p>
+            <p className="text-black">
               <strong>Blood Group:</strong> {req.blood_group}
             </p>
-            <p>
+            <p className="text-black">
               <strong>Date:</strong> {req.donation_date}
             </p>
-            <p>
+            <p className="text-black">
               <strong>Time:</strong> {req.donation_time}
             </p>
             <Link

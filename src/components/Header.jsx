@@ -5,6 +5,10 @@ import { Link, NavLink } from "react-router";
 import { AuthContext } from "../providers/AuthProvider";
 import { toast } from "react-toastify";
 import { FaCaretDown } from "react-icons/fa";
+import ThemeToggle from "../../ThemeToggle";
+
+
+
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -30,7 +34,7 @@ const Header = () => {
   ];
 
   return (
-    <nav className="bg-red-100 shadow-md sticky top-0 z-50">
+    <nav className="bg-red-100 shadow-md sticky top-0 z-50 ">
       {user && (
         <p className="hidden md:block text-center text-white bg-black py-2 bg-opacity-90">
           Welcome {user?.displayName} 🩸❤️ Thank you for being part of our
@@ -50,7 +54,7 @@ const Header = () => {
             <NavLink
               key={item.path}
               to={item.path}
-              className="hover:text-red-600"
+              className="hover:text-red-600 text-black"
             >
               {item.name}
             </NavLink>
@@ -58,7 +62,7 @@ const Header = () => {
 
           {/* Blog link only for not logged in user */}
           {user && (
-            <NavLink to="/blog" className="hover:text-red-600">
+            <NavLink to="/blog" className="hover:text-red-600 text-black">
               Our Blogs
             </NavLink>
           )}
@@ -81,7 +85,7 @@ const Header = () => {
                 <ul className=" absolute right-0 mt-2 bg-white border shadow-md w-40 rounded-md z-[9999] text-sm">
                   <li
                     onClick={() => setIsDropdownOpen(false)}
-                    className="px-4 py-2 hover:bg-gray-100"
+                    className="px-4 py-2 hover:bg-gray-100 text-black"
                   >
                     <Link to="/dashboard">Dashboard</Link>
                   </li>
@@ -90,7 +94,7 @@ const Header = () => {
                       handleLogout();
                       setIsDropdownOpen(false);
                     }}
-                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-black"
                   >
                     Logout
                   </li>
@@ -99,19 +103,22 @@ const Header = () => {
             </div>
           ) : (
             <>
-              <NavLink className="hover:text-red-600" to="/login">
+              <NavLink className="hover:text-red-600 text-black" to="/login">
                 Login
               </NavLink>
-              <NavLink className="hover:text-red-600" to="/registration">
+              <NavLink className="hover:text-red-600 text-black" to="/registration">
                 Register
               </NavLink>
             </>
           )}
         </ul>
 
-        {/* Mobile Menu */}
+<ThemeToggle></ThemeToggle>
 
+        {/* Mobile Menu */}
         <div className="lg:hidden flex justify-center items-center">
+        
+        {/* avater showing for mobile  */}
           {user && (
             <div className="mr-4">
               <img
@@ -124,17 +131,17 @@ const Header = () => {
           {!isMenuOpen ? (
             <RiMenuAddLine
               onClick={() => setIsMenuOpen(true)}
-              className="text-2xl cursor-pointer"
+              className="text-2xl cursor-pointer text-black"
             />
           ) : (
             <CgMenuMotion
               onClick={() => setIsMenuOpen(false)}
-              className="text-2xl cursor-pointer"
+              className="text-2xl cursor-pointer text-black"
             />
           )}
 
           <ul
-            className={`absolute bg-white z-50 top-16 left-0 w-full py-4 flex flex-col gap-4 shadow-md ${
+            className={`absolute bg-white text-black z-50 top-16 left-0 w-full py-4 flex flex-col gap-4 shadow-md ${
               isMenuOpen ? "block" : "hidden"
             }`}
           >

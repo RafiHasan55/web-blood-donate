@@ -25,12 +25,12 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 ">
       <div className="max-w-6xl mx-auto px-6 text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-red-600 mb-4">
           How It Works
         </h2>
-        <p className="text-gray-700 max-w-3xl mx-auto text-lg mb-10">
+        <p className="text-base-content max-w-3xl mx-auto text-lg mb-10 ">
           Follow these simple steps to become a lifesaving blood donor.
           Register, get notified, donate, and make a real difference in
           someone’s life.
@@ -39,12 +39,12 @@ const HowItWorks = () => {
           {steps.map((step, index) => (
             <div
               key={index}
-              className="bg-white p-6 rounded shadow hover:shadow-lg transition"
+              className="hover:scale-105 transition-transform duration-300 bg-white p-6 rounded shadow hover:shadow-lg"
             >
               <div className="mb-4 text-center justify-center items-center flex">
                 {step.icon}
               </div>
-              <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
+              <h3 className="text-lg font-semibold mb-2 text-black">{step.title}</h3>
               <p className="text-sm text-gray-600">{step.desc}</p>
             </div>
           ))}

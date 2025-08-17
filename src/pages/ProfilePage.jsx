@@ -82,10 +82,10 @@ const ProfilePage = () => {
 
       <form
         onSubmit={handleSubmit}
-        className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-gray-700"
+        className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-base-content"
       >
         <div>
-          <label className="block font-semibold mb-1">Full Name</label>
+          <label className="block font-semibold mb-1 text-black">Full Name</label>
           <input
             type="text"
             name="name"
@@ -97,18 +97,18 @@ const ProfilePage = () => {
         </div>
 
         <div>
-          <label className="block font-semibold mb-1">Email</label>
+          <label className="block font-semibold mb-1 text-black">Email</label>
           <input
             type="email"
             name="email"
             value={formData.email || ""}
             readOnly
-            className="input input-bordered w-full bg-gray-100"
+            className="input input-bordered w-full dark:bg-black"
           />
         </div>
 
         <div>
-          <label className="block font-semibold mb-1">Photo URL</label>
+          <label className="block font-semibold mb-1 text-black">Photo URL</label>
           <input
             type="text"
             name="photo"
@@ -120,7 +120,7 @@ const ProfilePage = () => {
         </div>
 
         <div>
-          <label className="block font-semibold mb-1">Blood Group</label>
+          <label className="block font-semibold mb-1 text-black">Blood Group</label>
           <select
             name="blood"
             value={formData.blood || ""}
@@ -128,7 +128,7 @@ const ProfilePage = () => {
             disabled={!editMode}
             className="input input-bordered w-full"
           >
-            <option value="">Select Blood Group</option>
+            <option className="text-base-content" value="">Select Blood Group</option>
             <option value="A+">A+</option>
             <option value="A-">A-</option>
             <option value="B+">B+</option>
@@ -141,7 +141,7 @@ const ProfilePage = () => {
         </div>
 
         <div>
-          <label className="block font-semibold mb-1">District</label>
+          <label className="block font-semibold mb-1 text-black">District</label>
           {!editMode ? (
             <input
               type="text"
@@ -165,7 +165,7 @@ const ProfilePage = () => {
         </div>
 
         <div>
-          <label className="block font-semibold mb-1">Upazila</label>
+          <label className="block font-semibold mb-1 text-black">Upazila</label>
           {!editMode ? (
             <input
               type="text"
@@ -185,7 +185,7 @@ const ProfilePage = () => {
           )}
         </div>
 
-        <div className="sm:col-span-2">
+        <div className="sm:col-span-2 text-black">
           <label className="block font-semibold mb-1">Password</label>
           <input
             type="password"
@@ -193,7 +193,7 @@ const ProfilePage = () => {
             value={formData.password || ""}
             onChange={handleChange}
             readOnly={!editMode}
-            className="input input-bordered w-full"
+            className="text-base-content input input-bordered w-full"
           />
         </div>
 

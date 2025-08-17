@@ -23,7 +23,7 @@ const BlogStatusPieChart = ({ blogs = [] }) => {
 
   return (
     <div className="p-4 bg-white rounded-2xl shadow-md">
-      <h2 className="text-lg font-semibold mb-4">Blog Status Distribution</h2>
+      <h2 className="text-lg font-semibold mb-4 text-black">Blog Status Distribution</h2>
       <ResponsiveContainer width="100%" height={250}>
         <PieChart>
           <Pie
