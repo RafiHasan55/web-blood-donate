@@ -121,12 +121,12 @@ export default function ContentManagementPage() {
               alt={selectedBlog.title}
               className="w-full h-60 object-cover rounded mb-4"
             />
-            <h2 className="text-2xl font-bold mb-2">{selectedBlog.title}</h2>
+            <h2 className="text-2xl font-bold mb-2 text-black">{selectedBlog.title}</h2>
             <p className="text-sm text-gray-500 mb-4 capitalize">
               Status: {selectedBlog.status}
             </p>
             <div
-              className="prose max-w-none"
+              className="prose max-w-none text-black"
               dangerouslySetInnerHTML={{ __html: selectedBlog.content }}
             ></div>
           </div>

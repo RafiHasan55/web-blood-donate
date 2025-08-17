@@ -61,7 +61,7 @@ export default function AllUsers() {
       </div>
 
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white shadow-md rounded-xl">
+        <table className=" min-w-full text-black bg-white shadow-md rounded-xl">
           <thead className="bg-gray-100 text-gray-700">
             <tr>
               <th className="p-3 text-left">Avatar</th>

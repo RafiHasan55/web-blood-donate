@@ -7,9 +7,6 @@ import { toast } from "react-toastify";
 import { FaCaretDown } from "react-icons/fa";
 import ThemeToggle from "../../ThemeToggle";
 
-
-
-
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -106,19 +103,24 @@ const Header = () => {
               <NavLink className="hover:text-red-600 text-black" to="/login">
                 Login
               </NavLink>
-              <NavLink className="hover:text-red-600 text-black" to="/registration">
+              <NavLink
+                className="hover:text-red-600 text-black"
+                to="/registration"
+              >
                 Register
               </NavLink>
             </>
           )}
+          <ThemeToggle></ThemeToggle>
         </ul>
-
-<ThemeToggle></ThemeToggle>
 
         {/* Mobile Menu */}
         <div className="lg:hidden flex justify-center items-center">
-        
-        {/* avater showing for mobile  */}
+          <div className="mr-3">
+            <ThemeToggle></ThemeToggle>
+          </div>
+
+          {/* avater showing for mobile  */}
           {user && (
             <div className="mr-4">
               <img

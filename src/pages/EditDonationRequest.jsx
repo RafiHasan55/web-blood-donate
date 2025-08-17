@@ -139,7 +139,7 @@ export default function EditDonationRequest() {
         ></textarea>
 
         <div className="sm:col-span-2 text-right">
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn bg-red-600 text-white hover:bg-red-700">
             Update Request
           </button>
         </div>
